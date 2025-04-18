@@ -291,11 +291,11 @@ return
 
 #If WinActive("ahk_exe chrome.exe")
 >+a::  ; Ctrl + A — Назад
-Send, ^{Left}  ; Отправляет сочетание Ctrl + Left (назад)
+Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}  ; Отправляет сочетание Ctrl + Left (назад)
 return
 
 >+d::  ; Ctrl + D — Вперёд
-Send, ^{Right}  ; Отправляет сочетание Ctrl + Right (вперёд)
+Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}  ; Отправляет сочетание Ctrl + Right (вперёд)
 return
 
 >+f::  ; Ctrl + F — Нажатие F11
@@ -474,10 +474,17 @@ sc3A & sc1::
         Run, C:\Windows\system32\cmd.exe
     return
 
-; Для Telegram.exe (<#z) — Windows+Z
-<#z::
+    <#z::
     IfWinExist, ahk_exe Telegram.exe
+    {
+        ; Проверка, что окно существует
         WinActivate
+        ; Используем функцию WinWaitActive для более точного фокуса
+        WinWaitActive, ahk_exe Telegram.exe
+    }
     else
+    {
         Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+    }
     return
+
