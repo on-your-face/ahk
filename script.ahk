@@ -60,84 +60,91 @@ sleep, 2000
 
 ; soft-cords_autorun-start
 EnvGet, deviceName, COMPUTERNAME
-; Проверяем, соответствует ли имя устройства "nexeption-tpls"
-if (deviceName != "nexeption-tpls") {
-return  ; Если имя устройства не совпадает, выходим из скрипта
-}
-; Список окон и их целевые координаты
+
+; Определяем координаты окон в зависимости от имени устройства
 windows := []
-windows.push({exe: "Telegram.exe",     x: 2180,  y: 0,    w: 380,  h: 1080})
-windows.push({exe: "chrome.exe",       x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "Code.exe",         x: 0,     y: 0,    w: 2180, h: 1080})
-windows.push({exe: "Totalcmd64.exe",   x: -7,    y: 0,    w: 2194, h: 1087})
-windows.push({exe: "cmd.exe",          x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "lghub.exe",        x: -1920, y: -77,  w: 1920, h: 1080})
+
+if (deviceName = "nexeption-tpls") {
+    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+    windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
+} else if (deviceName = "nexeption-home") {
+    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+    windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2180, h: 1080})
+} else {
+    return  ; Если имя устройства не совпадает, выходим из скрипта
+}
 
 ; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
-; Исправляем: используем правильный доступ к имени исполняемого файла
-exeName := win.exe
-WinGet, hwnd, ID, ahk_exe %exeName%
-if (hwnd) {
-WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
-if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
-WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
+    exeName := win.exe
+    WinGet, hwnd, ID, ahk_exe %exeName%
+    if (hwnd) {
+        WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
+        if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
+            WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
+        }
+    }
 }
-}
-}
+
 WinGet, hwndCmd, ID, ahk_exe cmd.exe
 if (hwndCmd) {
-WinActivate, ahk_id %hwndCmd%
+    WinActivate, ahk_id %hwndCmd%
 }
+
 WinGet, hwndVscode, ID, ahk_exe Code.exe
 if (hwndVscode) {
-WinActivate, ahk_id %hwndVscode%
+    WinActivate, ahk_id %hwndVscode%
 }
 ; soft-cords_autorun-end
 
 return
 
-
 <^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
 return
 
+; soft-cords_run-start
 >#sc39::
 EnvGet, deviceName, COMPUTERNAME
-; Проверяем, соответствует ли имя устройства "nexeption-tpls"
-if (deviceName != "nexeption-tpls") {
-return  ; Если имя устройства не совпадает, выходим из скрипта
-}
-; Список окон и их целевые координаты
+
+; Список окон и их координаты в зависимости от устройства
 windows := []
-windows.push({exe: "Telegram.exe",     x: 2180,  y: 0,    w: 380,  h: 1080})
-windows.push({exe: "chrome.exe",       x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "Code.exe",         x: 0,     y: 0,    w: 2180, h: 1080})
-windows.push({exe: "Totalcmd64.exe",   x: -7,    y: 0,    w: 2194, h: 1087})
-windows.push({exe: "cmd.exe",          x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "lghub.exe",        x: -1920, y: -77,  w: 1920, h: 1080})
+
+if (deviceName = "nexeption-tpls") {
+    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+    windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
+} else if (deviceName = "nexeption-home") {
+    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+    windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2194, h: 1087})
+    windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2180, h: 1080})
+} else {
+    return  ; Неизвестное устройство — выход
+}
 
 ; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
-; Исправляем: используем правильный доступ к имени исполняемого файла
-exeName := win.exe
-WinGet, hwnd, ID, ahk_exe %exeName%
-if (hwnd) {
-WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
-if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
-WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
-}
-}
-}
-; Сначала активируем cmd.exe
-WinGet, hwndCmd, ID, ahk_exe cmd.exe
-if (hwndCmd) {
-WinActivate, ahk_id %hwndCmd%
-}
-
-; Затем активируем vscode (Code.exe)
-WinGet, hwndVscode, ID, ahk_exe Code.exe
-if (hwndVscode) {
-WinActivate, ahk_id %hwndVscode%
+    exeName := win.exe
+    WinGet, hwnd, ID, ahk_exe %exeName%
+    if (hwnd) {
+        WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
+        if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
+            WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
+        }
+    }
 }
 return
 ; soft-cords_run-end
