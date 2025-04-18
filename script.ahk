@@ -422,30 +422,48 @@ return
 
 ; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
-    WinActivate, ahk_exe lghub.exe
+    IfWinExist, ahk_exe lghub.exe
+        WinActivate
+    else
+        Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
     return
 
 ; Для chrome.exe (<#1) — Windows+1
 <#1::
-    WinActivate, ahk_exe chrome.exe
+    IfWinExist, ahk_exe chrome.exe
+        WinActivate
+    else
+        Run, C:\Program Files\Google\Chrome\Application\chrome.exe
     return
 
 ; Для Code.exe (<#a) — Windows+A
 <#a::
-    WinActivate, ahk_exe Code.exe
+    IfWinExist, ahk_exe Code.exe
+        WinActivate
+    else
+        Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
     return
 
 ; Для Totalcmd64.exe (<#q) — Windows+Q
 <#q::
-    WinActivate, ahk_exe Totalcmd64.exe
+    IfWinExist, ahk_exe Totalcmd64.exe
+        WinActivate
+    else
+        Run, C:\on-your-face\totalCMD\Totalcmd64.exe
     return
 
 ; Для cmd.exe (<#s) — Windows+S
 <#s::
-    WinActivate, ahk_exe cmd.exe
+    IfWinExist, ahk_exe cmd.exe
+        WinActivate
+    else
+        Run, C:\Windows\system32\cmd.exe
     return
 
 ; Для Telegram.exe (<#z) — Windows+Z
 <#z::
-    WinActivate, ahk_exe Telegram.exe
+    IfWinExist, ahk_exe Telegram.exe
+        WinActivate
+    else
+        Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
     return
