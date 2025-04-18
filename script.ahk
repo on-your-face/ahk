@@ -19,30 +19,24 @@ BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
 
-; switch-lang_autorun-start
-SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
-ToggleKeyboardLayout() {
-static isRussian := false
-isRussian := !isRussian
-if isRussian
-SetKeyboardLayout(0x0419) ; ru-RU
-else
-SetKeyboardLayout(0x0409) ; en-US
-}
-SetKeyboardLayout(LocaleID) {
-hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
-hwnd := WinActive("A")
-PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
-}
-; switch-lang_autorun-end
-
 ; soft_autorun-start
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
+WinWait, ahk_exe lghub.exe  ; Ждем появления окна без таймаута
+
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+WinWait, ahk_exe chrome.exe  ; Ждем появления окна без таймаута
+
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
+WinWait, ahk_exe Code.exe  ; Ждем появления окна без таймаута
+
 Run, C:\Windows\system32\cmd.exe
+WinWait, ahk_exe cmd.exe  ; Ждем появления окна без таймаута
+
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
+WinWait, ahk_exe Totalcmd64.exe  ; Ждем появления окна без таймаута
+
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+WinWait, ahk_exe Telegram.exe  ; Ждем появления окна без таймаута
 ; soft_autorun-end
 
 sleep, 2000
@@ -84,23 +78,22 @@ WinActivate, ahk_id %hwndVscode%
 }
 ; soft-cords_autorun-end
 
-; --- Функция SwitchToApp ---
-SwitchToApp(appExe, appPath) {
-    DetectHiddenWindows, On
-    SetTitleMatchMode, 2
-
-    ; Пробуем найти окно по имени процесса
-    if WinExist("ahk_exe " . appExe)
-    {
-        WinActivate
-    }
-    else
-    {
-        Run, %appPath%
-        WinWait, ahk_exe %appExe%
-        WinActivate
-    }
+; switch-lang_autorun-start
+SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
+ToggleKeyboardLayout() {
+static isRussian := false
+isRussian := !isRussian
+if isRussian
+SetKeyboardLayout(0x0419) ; ru-RU
+else
+SetKeyboardLayout(0x0409) ; en-US
 }
+SetKeyboardLayout(LocaleID) {
+hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
+hwnd := WinActive("A")
+PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
+}
+; switch-lang_autorun-end
 
 return
 
@@ -232,7 +225,7 @@ return
 >^f:: SendPlay, ^{Enter}
 return
 
-<#Space:: SendPlay, ^t
+<#sc39:: SendPlay, ^t
 return
 
 <!sc1:: SendInput, {sc29}
@@ -241,7 +234,7 @@ return
 >^sc1:: WinClose, A
 return
 
-<#-:: SendInput, U+2014
+<#-:: SendInput, {U+2014}
 return
 
 <#<!-:: SendInput, {U+2013}
@@ -418,32 +411,34 @@ Click, left
 clipboard := ""
 return
 
-; Win + Q → Total Commander
-<#q::
-SwitchToApp("Totalcmd64.exe", "c:\on-your-face\totalcmd\Totalcmd64.exe")
-return
+; Горячие клавиши для переключения фокуса на окна
 
-; Win + Z → Telegram
-<#z::
-SwitchToApp("Telegram.exe", "C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe")
-return
-
-; Win + 1 → Chrome
-<#1::
-SwitchToApp("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
-return
-
-; Win + A → VS Code
-<#a::
-SwitchToApp("Code.exe", "C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe")
-return
-
-; Win + S → CMD
-<#s::
-SwitchToApp("cmd.exe", "C:\Windows\system32\cmd.exe")
-return
-
-; CapsLock + ESC → Logitech
+; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
-SwitchToApp("lghub.exe", "C:\Windows\system32\cmd.exe")
-return
+    WinActivate, ahk_exe lghub.exe
+    return
+
+; Для chrome.exe (<#1) — Windows+1
+<#1::
+    WinActivate, ahk_exe chrome.exe
+    return
+
+; Для Code.exe (<#a) — Windows+A
+<#a::
+    WinActivate, ahk_exe Code.exe
+    return
+
+; Для Totalcmd64.exe (<#q) — Windows+Q
+<#q::
+    WinActivate, ahk_exe Totalcmd64.exe
+    return
+
+; Для cmd.exe (<#s) — Windows+S
+<#s::
+    WinActivate, ahk_exe cmd.exe
+    return
+
+; Для Telegram.exe (<#z) — Windows+Z
+<#z::
+    WinActivate, ahk_exe Telegram.exe
+    return
