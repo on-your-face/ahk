@@ -19,6 +19,23 @@ BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
 
+; switch-lang_autorun-start
+SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
+ToggleKeyboardLayout() {
+static isRussian := false
+isRussian := !isRussian
+if isRussian
+SetKeyboardLayout(0x0419) ; ru-RU
+else
+SetKeyboardLayout(0x0409) ; en-US
+}
+SetKeyboardLayout(LocaleID) {
+hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
+hwnd := WinActive("A")
+PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
+}
+; switch-lang_autorun-end
+
 ; soft_autorun-start
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 WinWait, ahk_exe lghub.exe  ; Ждем появления окна без таймаута
@@ -77,23 +94,6 @@ if (hwndVscode) {
 WinActivate, ahk_id %hwndVscode%
 }
 ; soft-cords_autorun-end
-
-; switch-lang_autorun-start
-SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
-ToggleKeyboardLayout() {
-static isRussian := false
-isRussian := !isRussian
-if isRussian
-SetKeyboardLayout(0x0419) ; ru-RU
-else
-SetKeyboardLayout(0x0409) ; en-US
-}
-SetKeyboardLayout(LocaleID) {
-hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
-hwnd := WinActive("A")
-PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
-}
-; switch-lang_autorun-end
 
 return
 
