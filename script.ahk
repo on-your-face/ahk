@@ -38,22 +38,22 @@ PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном о�
 
 ; soft_autorun-start
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
-WinWait, ahk_exe lghub.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe lghub.exe
 
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
-WinWait, ahk_exe chrome.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe chrome.exe
 
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
-WinWait, ahk_exe Code.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe Code.exe
 
 Run, C:\Windows\system32\cmd.exe
-WinWait, ahk_exe cmd.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe cmd.exe
 
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
-WinWait, ahk_exe Totalcmd64.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe Totalcmd64.exe
 
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-WinWait, ahk_exe Telegram.exe  ; Ждем появления окна без таймаута
+WinWait, ahk_exe Telegram.exe
 ; soft_autorun-end
 
 sleep, 2000
@@ -65,43 +65,43 @@ EnvGet, deviceName, COMPUTERNAME
 windows := []
 
 if (deviceName = "nexeption-tpls") {
-    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-    windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
-    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
-    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
-    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
-    windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
+windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
+windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
-    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-    windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
-    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
-    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
-    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
-    windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
+windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
+windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
+windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
+windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
+windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
 } else {
-    return  ; Если имя устройства не совпадает, выходим из скрипта
+return  ; Если имя устройства не совпадает, выходим из скрипта
 }
 
 ; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
-    exeName := win.exe
-    WinGet, hwnd, ID, ahk_exe %exeName%
-    if (hwnd) {
-        WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
-        if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
-            WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
-        }
-    }
+exeName := win.exe
+WinGet, hwnd, ID, ahk_exe %exeName%
+if (hwnd) {
+WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
+if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
+WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
+}
+}
 }
 
 WinGet, hwndCmd, ID, ahk_exe cmd.exe
 if (hwndCmd) {
-    WinActivate, ahk_id %hwndCmd%
+WinActivate, ahk_id %hwndCmd%
 }
 
 WinGet, hwndVscode, ID, ahk_exe Code.exe
 if (hwndVscode) {
-    WinActivate, ahk_id %hwndVscode%
+WinActivate, ahk_id %hwndVscode%
 }
 ; soft-cords_autorun-end
 
@@ -118,33 +118,33 @@ EnvGet, deviceName, COMPUTERNAME
 windows := []
 
 if (deviceName = "nexeption-tpls") {
-    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-    windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
-    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
-    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
-    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
-    windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
+windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
+windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
+windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
+windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
-    windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-    windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
-    windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
-    windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
-    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты для cmd.exe
-    windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
+windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
+windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
+windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
+windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты для cmd.exe
+windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
 } else {
-    return  ; Неизвестное устройство — выход
+return  ; Неизвестное устройство — выход
 }
 
 ; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
-    exeName := win.exe
-    WinGet, hwnd, ID, ahk_exe %exeName%
-    if (hwnd) {
-        WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
-        if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
-            WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
-        }
-    }
+exeName := win.exe
+WinGet, hwnd, ID, ahk_exe %exeName%
+if (hwnd) {
+WinGetPos, wx, wy, ww, wh, ahk_id %hwnd%
+if (wx != win.x || wy != win.y || ww != win.w || wh != win.h) {
+WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
+}
+}
 }
 return
 ; soft-cords_run-end
@@ -301,6 +301,22 @@ return
 >+f::  ; Ctrl + F — Нажатие F11
 Send, {F11}  ; Отправляет клавишу F11
 return
+
+>+z::Send, ^1
+return
+>+x::Send, ^2
+return
+>+c::Send, ^3
+return
+>+v::Send, ^4
+return
+>+b::Send, ^5
+return
+>+n::Send, ^6
+return
+>+m::Send, ^7
+return
+
 #If
 
 SC03A & 1::
@@ -436,55 +452,61 @@ return
 
 ; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
-    IfWinExist, ahk_exe lghub.exe
-        WinActivate
-    else
-        Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
-    return
+IfWinExist, ahk_exe lghub.exe
+WinActivate
+else
+Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
+return
 
 ; Для chrome.exe (<#1) — Windows+1
 <#1::
-    IfWinExist, ahk_exe chrome.exe
-        WinActivate
-    else
-        Run, C:\Program Files\Google\Chrome\Application\chrome.exe
-    return
+IfWinExist, ahk_exe chrome.exe
+WinActivate
+else
+Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+return
 
 ; Для Code.exe (<#a) — Windows+A
 <#a::
-    IfWinExist, ahk_exe Code.exe
-        WinActivate
-    else
-        Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
-    return
+IfWinExist, ahk_exe Code.exe
+WinActivate
+else
+Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
+return
 
 ; Для Totalcmd64.exe (<#q) — Windows+Q
 <#q::
-    IfWinExist, ahk_exe Totalcmd64.exe
-        WinActivate
-    else
-        Run, C:\on-your-face\totalCMD\Totalcmd64.exe
-    return
+IfWinExist, ahk_exe Totalcmd64.exe
+WinActivate
+else
+Run, C:\on-your-face\totalCMD\Totalcmd64.exe
+return
 
 ; Для cmd.exe (<#s) — Windows+S
 <#s::
-    IfWinExist, ahk_exe cmd.exe
-        WinActivate
-    else
-        Run, C:\Windows\system32\cmd.exe
-    return
+IfWinExist, ahk_exe cmd.exe
+WinActivate
+else
+Run, C:\Windows\system32\cmd.exe
+return
 
-    <#z::
-    IfWinExist, ahk_exe Telegram.exe
+<#z::
+    ; Получаем дескриптор окна Telegram
+    WinGet, hWnd, ID, ahk_exe Telegram.exe
+    if (hWnd) ; Если окно найдено
     {
-        ; Проверка, что окно существует
-        WinActivate
-        ; Используем функцию WinWaitActive для более точного фокуса
-        WinWaitActive, ahk_exe Telegram.exe
+        ; Фокусируем окно
+        DllCall("SetForegroundWindow", "Ptr", hWnd)
     }
     else
     {
+        ; Если окно не найдено, запускаем Telegram
         Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+        ; Ждем окно
+        WinWait, ahk_exe Telegram.exe, , 10
+        ; Получаем дескриптор окна
+        WinGet, hWnd, ID, ahk_exe Telegram.exe
+        ; Фокусируем окно
+        DllCall("SetForegroundWindow", "Ptr", hWnd)
     }
-    return
-
+return
