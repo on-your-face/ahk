@@ -69,14 +69,14 @@ if (deviceName = "nexeption-tpls") {
     windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
     windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
     windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
-    windows.push({exe: "cmd.exe",        x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
     windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
     windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
     windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
     windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
     windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
-    windows.push({exe: "cmd.exe",        x: 21,    y: 39,   w: 2574, h: 1087}) ; Изменены координаты для cmd.exe
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
     windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
 } else {
     return  ; Если имя устройства не совпадает, выходим из скрипта
@@ -122,14 +122,14 @@ if (deviceName = "nexeption-tpls") {
     windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
     windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
     windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
-    windows.push({exe: "cmd.exe",        x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты cmd.exe
     windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
     windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
     windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для chrome.exe
     windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для Code.exe
     windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087}) ; Изменены координаты для Totalcmd64.exe
-    windows.push({exe: "cmd.exe",        x: 21,    y: 39,   w: 2574, h: 1087}) ; Изменены координаты для cmd.exe
+    windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087}) ; Обновлены координаты для cmd.exe
     windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080}) ; Изменены координаты для lghub.exe
 } else {
     return  ; Неизвестное устройство — выход
