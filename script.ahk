@@ -292,16 +292,16 @@ return
 #If
 
 #If WinActive("ahk_exe chrome.exe")
->+a::  ; Ctrl + A — Назад
-Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}  ; Отправляет сочетание Ctrl + Left (назад)
+>+a::
+Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
 return
 
->+d::  ; Ctrl + D — Вперёд
-Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}  ; Отправляет сочетание Ctrl + Right (вперёд)
+>+d::
+Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}
 return
 
->+f::  ; Ctrl + F — Нажатие F11
-Send, {F11}  ; Отправляет клавишу F11
+>+f::
+Send, {F11}
 return
 
 >+z::Send, ^1
