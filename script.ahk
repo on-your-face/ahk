@@ -14,7 +14,7 @@ VD.createUntil(2)
 
 ; mouse-block__autorun-start
 Mouse_Blocked := false
-Run, mods\nomousy.exe / hide
+Run,mods\nomousy.exe / hide
 BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
@@ -155,7 +155,7 @@ return
 ; mouse-block__run-start
 <^sc1::
 if (Mouse_Blocked) {
-Run,mods\nomousy.exe
+Run, mods\nomousy.exe
 BlockInput, MouseMoveOff
 Mouse_Blocked := false
 } else {
@@ -173,6 +173,7 @@ WheelDown::
 return
 #If
 ; mouse-block__run-end
+
 
 ; switch-lang_run-start
 sc03A:: 
@@ -408,6 +409,8 @@ Send {Enter}
 return
 #If
 
+; telegram_hotkeys
+
 >#sc1::
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
@@ -434,22 +437,36 @@ Click, left
 clipboard := ""
 return
 
->#f::
+#f::
+; Скрываем курсор и блокируем перемещение мыши
+Run, mods\nomousy.exe /hide
+BlockInput, MouseMove
+Mouse_Blocked := true
+
+; Основной функционал
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
 Run, tg://resolve?domain=nexeption
-CoordMode, Mouse, Screen
-MouseMove, 2501, 50, 0
-Sleep, 400
-Click, left
-Send, ^a
+WinWait, ahk_exe Telegram.exe
+Send, {Tab}
+Send, Избранное
+Send, {Enter}
+Send, ^f
 Send, ^v
 Sleep, 400
-MouseMove, 2365, 205, 0
+CoordMode, Mouse, Screen
+MouseMove, 2358, 209, 0
 Sleep, 1000
 Click, left
 clipboard := ""
+
+; Возвращаем курсор и разблокируем мышь
+Run, mods\nomousy.exe
+BlockInput, MouseMoveOff
+Mouse_Blocked := false
+
 return
+
 
 ; Горячие клавиши для переключения фокуса на окна
 
