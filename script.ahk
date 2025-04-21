@@ -37,6 +37,10 @@ PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном о�
 ; switch-lang_autorun-end
 
 ; soft_autorun-start
+
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
+WinWait, ahk_exe firefox.exe
+
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 WinWait, ahk_exe lghub.exe
 
@@ -67,10 +71,11 @@ windows := []
 
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2180, h: 1080})
-windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2194, h: 1087})
-windows.push({exe: "cmd.exe",        x: -1927, y: -77,	w: 1934, h: 1087})
+windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
+windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
+windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1934, h: 1087})
 windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
@@ -122,8 +127,9 @@ windows := []
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
 windows.push({exe: "chrome.exe",                    x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2180, h: 1080})
-windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2194, h: 1087})
+windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
+windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
+windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",                       x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "lghub.exe",                     x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
@@ -151,6 +157,48 @@ WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
 }
 return
 ; soft-cords_run-end
+
+; firefox_style-start
+>#2::
+WinClose, ahk_exe firefox.exe
+userChromePath := "c:\users\user\appdata\roaming\mozilla\firefox\Profiles\b8lnxhe3.default-release\chrome\userChrome.css"
+styleBlock =
+(
+<style>
+#TabsToolbar {
+visibility: collapse !important;
+}
+
+#titlebar {
+visibility: collapse !important;
+}
+
+#navigator-toolbox {
+visibility: collapse !important;
+}
+
+#statuspanel {
+display: none !important;
+}
+
+#tabbrowser-tabpanels {
+background-color: #000000 !important;
+}
+
+#browser {
+background-color: #000000 !important;
+}
+</style>
+)
+if FileExist(userChromePath) {
+FileDelete, %userChromePath%
+} else {
+FileAppend, %styleBlock%, %userChromePath%
+}
+Sleep, 1000
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
+return
+; firefox_style-end
 
 ; mouse-block__run-start
 <^sc1::
@@ -446,12 +494,13 @@ Mouse_Blocked := true
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
 Run, tg://resolve?domain=nexeption
-WinWait, ahk_exe Telegram.exe
-Send, {Tab}
-Send, Избранное
-Send, {Enter}
-Send, ^f
-Send, ^v
+; WinWait, ahk_exe Telegram.exe
+; Send, {Tab}
+; Send, Избранное
+; Send, {Enter}
+sleep, 300
+Send, {Lctrl down} {f} {Lctrl up}
+Send, {Lctrl down} {v} {Lctrl up}
 Sleep, 400
 CoordMode, Mouse, Screen
 MouseMove, 2358, 209, 0
@@ -466,7 +515,6 @@ Mouse_Blocked := false
 
 return
 
-
 ; Горячие клавиши для переключения фокуса на окна
 
 ; Для lghub.exe (sc3A & sc1)
@@ -477,8 +525,14 @@ else
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
 
-; Для chrome.exe (<#1) — Windows+1
 <#1::
+IfWinExist, ahk_exe firefox.exe
+WinActivate
+else
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
+return
+
+<#2::
 IfWinExist, ahk_exe chrome.exe
 WinActivate
 else
@@ -510,10 +564,13 @@ Run, C:\Windows\system32\cmd.exe
 return
 
 <#z::
-IfWinExist, ahk_exe Telegram.exe
-WinActivate
-else
-Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+if WinExist("ahk_exe Telegram.exe") {
+    WinActivate
+    WinWaitActive, ahk_exe Telegram.exe
+} else {
+    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+    WinWaitActive, ahk_exe Telegram.exe
+}
 return
 
 <#x::
