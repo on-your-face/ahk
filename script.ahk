@@ -174,7 +174,6 @@ return
 #If
 ; mouse-block__run-end
 
-
 ; switch-lang_run-start
 sc03A:: 
 ToggleKeyboardLayout()
