@@ -568,15 +568,20 @@ else
 Run, C:\Windows\system32\cmd.exe
 return
 
+
+; telegram_run-start
 <#z::
 if WinExist("ahk_exe Telegram.exe") {
     WinActivate
     WinWaitActive, ahk_exe Telegram.exe
+    ControlFocus,, ahk_exe Telegram.exe
 } else {
     Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
     WinWaitActive, ahk_exe Telegram.exe
+    ControlFocus,, ahk_exe Telegram.exe
 }
 return
+; telegram_run-end
 
 <#x::
 if (A_ComputerName = "nexeption-home")
