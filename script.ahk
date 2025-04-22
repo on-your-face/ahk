@@ -272,16 +272,16 @@ return
 <#sc1:: Run, C:\Program Files\CloseAll\CloseAll.exe /NOUI
 return
 
-<^<#<!Right:: Run, mods\nircmd-x64\nircmd.exe standby
+<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe standby
 return
 
-<^<#<!Left:: Run, mods\nircmd-x64\nircmd.exe exitwin logoff
+<^<#<!Left:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
 return
 
-<^<#<!Up:: Run, mods\nircmd-x64\nircmd.exe exitwin reboot
+<^<#<!Up:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin reboot
 return
 
-<^<#<!Down:: Run, mods\nircmd-x64\nircmd.exe exitwin poweroff
+<^<#<!Down:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin poweroff
 return
 
 #If WinActive("ahk_exe Code.exe")
