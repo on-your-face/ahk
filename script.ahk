@@ -47,6 +47,9 @@ WinWait, ahk_exe lghub.exe
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
 WinWait, ahk_exe chrome.exe
 
+Run, c:\on-your-face\chrome-win\chromium.exe
+WinWait, ahk_exe chromium.exe
+
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
 WinWait, ahk_exe Code.exe
 
@@ -73,8 +76,9 @@ windows := []
 
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
+; windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+windows.push({exe: "chromium.exe",      x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1934, h: 1087})
@@ -129,6 +133,7 @@ windows := []
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
 windows.push({exe: "chrome.exe",                    x: -1927, y: -77,  w: 1934, h: 1087})
+windows.push({exe: "chromium.exe",      x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, h: 1087})
@@ -377,7 +382,9 @@ return
 
 
 ; browsers-hotkeys_start
-#If WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe firefox.exe")
+if WinActive("ahk_exe chrome.exe") 
+|| WinActive("ahk_exe chromium.exe") 
+|| WinActive("ahk_exe firefox.exe")
 >+a::
 Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
 return
@@ -571,6 +578,16 @@ return
 ; return
 
 <#1::
+if (A_ComputerName = "nexeption-tpls")
+{
+IfWinExist, ahk_exe chromium.exe
+WinActivate
+else
+Run, c:\on-your-face\chrome-win\chromium.exe
+}
+return
+
+<#2::
 IfWinExist, ahk_exe chrome.exe
 WinActivate
 else
@@ -605,13 +622,13 @@ return
 ; telegram_run-start
 <#z::
 if WinExist("ahk_exe Telegram.exe") {
-    WinActivate
-    WinWaitActive, ahk_exe Telegram.exe
-    ControlFocus,, ahk_exe Telegram.exe
+WinActivate
+WinWaitActive, ahk_exe Telegram.exe
+ControlFocus,, ahk_exe Telegram.exe
 } else {
-    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-    WinWaitActive, ahk_exe Telegram.exe
-    ControlFocus,, ahk_exe Telegram.exe
+Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+WinWaitActive, ahk_exe Telegram.exe
+ControlFocus,, ahk_exe Telegram.exe
 }
 return
 ; telegram_run-end
@@ -619,38 +636,38 @@ return
 <#x::
 if (A_ComputerName = "nexeption-home")
 {
-    IfWinExist, ahk_exe steamwebhelper.exe
-        WinActivate
-    else
-        Run, "C:\Program Files (x86)\Steam\steam.exe"
+IfWinExist, ahk_exe steamwebhelper.exe
+WinActivate
+else
+Run, "C:\Program Files (x86)\Steam\steam.exe"
 }
 return
 
 <^<#q::
 if (A_ComputerName = "nexeption-home")
 {
-    if WinExist("ahk_exe cs2.exe")
-    {
-        WinActivate
-    }
-    else
-    {
-        Run, steam://rungameid/730
-    }
+if WinExist("ahk_exe cs2.exe")
+{
+WinActivate
+}
+else
+{
+Run, steam://rungameid/730
+}
 }
 return
 
 <^<#w::
 if (A_ComputerName = "nexeption-home")
 {
-    if WinExist("ahk_exe dota2.exe")
-    {
-        WinActivate
-    }
-    else
-    {
-        Run, steam://rungameid/570
-    }
+if WinExist("ahk_exe dota2.exe")
+{
+WinActivate
+}
+else
+{
+Run, steam://rungameid/570
+}
 }
 return
 
