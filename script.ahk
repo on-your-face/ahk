@@ -342,6 +342,39 @@ Send, {LAlt down}{LShift down}{Down}{LShift up}{LAlt up}
 return
 #If
 
+; telegram-hotkeys_start
+#If WinActive("ahk_exe Telegram.exe")
+>+a::
+Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
+return
+>+d::
+Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}
+return
+>+f::
+Send, {F11}
+return
+>+z::Send, ^1
+return
+>+x::Send, ^2
+return
+>+c::Send, ^3
+return
+>+v::Send, ^4
+return
+>+b::Send, ^5
+return
+>+n::Send, ^6
+return
+>+m::Send, ^7
+return
+; <^MButton::
+;     Click, MButton
+;     Sleep, 200
+;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
+; return
+#If
+; telegram-hotkeys_end
+
 
 ; browsers-hotkeys_start
 #If WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe firefox.exe")
@@ -462,17 +495,17 @@ Send {Enter}
 return
 #If
 
-; telegram-hotkeys_start
-
 >#1::
 CoordMode, Mouse, Screen
-MouseMove, 1340, 498, 0
+MouseMove, -926, 436, 0
 return
 
 >#2::
 CoordMode, Mouse, Screen
-MouseMove, -926, 436, 0
+MouseMove, 1340, 498, 0
 return
+
+; telegram-hotkeys_start
 
 >#z::
 WinActivate, ahk_exe Telegram.exe
