@@ -38,8 +38,8 @@ PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном о�
 
 ; soft_autorun-start
 
-Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
-WinWait, ahk_exe firefox.exe
+; Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
+; WinWait, ahk_exe firefox.exe
 
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 WinWait, ahk_exe lghub.exe
@@ -59,7 +59,7 @@ WinWait, ahk_exe Totalcmd64.exe
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
 WinWait, ahk_exe Telegram.exe
 
-Run, c:\on-your-face\zapret-win-bundle-master\zapret-winws\preset_russia_autohostlist.cmd
+; Run, c:\on-your-face\zapret-win-bundle-master\zapret-winws\preset_russia_autohostlist.cmd
 
 ; soft_autorun-end
 
@@ -161,7 +161,7 @@ return
 ; soft-cords_run-end
 
 ; firefox_style-start
->#2::
+>#sc1::
 WinClose, ahk_exe firefox.exe
 userChromePath := "c:\users\user\appdata\roaming\mozilla\firefox\Profiles\b8lnxhe3.default-release\chrome\userChrome.css"
 styleBlock =
@@ -462,9 +462,19 @@ Send {Enter}
 return
 #If
 
-; telegram_hotkeys
+; telegram-hotkeys_start
 
->#sc1::
+>#1::
+CoordMode, Mouse, Screen
+MouseMove, 1340, 498, 0
+return
+
+>#2::
+CoordMode, Mouse, Screen
+MouseMove, -926, 436, 0
+return
+
+>#z::
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
 Run, tg://resolve?domain=nexeption
@@ -476,7 +486,7 @@ Sleep, 200
 Click, left
 return
 
->#1::
+>#x::
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
 CoordMode, Mouse, Screen
@@ -490,20 +500,13 @@ Click, left
 clipboard := ""
 return
 
-#f::
-; Скрываем курсор и блокируем перемещение мыши
+>#c::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
 Mouse_Blocked := true
-
-; Основной функционал
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
 Run, tg://resolve?domain=nexeption
-; WinWait, ahk_exe Telegram.exe
-; Send, {Tab}
-; Send, Избранное
-; Send, {Enter}
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
@@ -513,15 +516,11 @@ MouseMove, 2358, 209, 0
 Sleep, 1000
 Click, left
 clipboard := ""
-
-; Возвращаем курсор и разблокируем мышь
 Run, mods\nomousy.exe
 BlockInput, MouseMoveOff
 Mouse_Blocked := false
-
 return
-
-; Горячие клавиши для переключения фокуса на окна
+; telegram-hotkeys_end
 
 ; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
@@ -531,14 +530,14 @@ else
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
 
-<#1::
-IfWinExist, ahk_exe firefox.exe
-WinActivate
-else
-Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
-return
+; <#1::
+; IfWinExist, ahk_exe firefox.exe
+; WinActivate
+; else
+; Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
+; return
 
-<#2::
+<#1::
 IfWinExist, ahk_exe chrome.exe
 WinActivate
 else
