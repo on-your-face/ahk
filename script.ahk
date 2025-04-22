@@ -578,13 +578,10 @@ return
 ; return
 
 <#1::
-if (A_ComputerName = "nexeption-tpls")
-{
 IfWinExist, ahk_exe chromium.exe
 WinActivate
 else
 Run, c:\on-your-face\chrome-win\chromium.exe
-}
 return
 
 <#2::
@@ -620,15 +617,13 @@ return
 
 
 ; telegram_run-start
-<#z::
-if WinExist("ahk_exe Telegram.exe") {
-WinActivate
-WinWaitActive, ahk_exe Telegram.exe
-ControlFocus,, ahk_exe Telegram.exe
+#z::
+if WinExist("ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon") {
+    WinActivate
+    WinWaitActive, ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon
 } else {
-Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-ControlFocus,, ahk_exe Telegram.exe
+    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+    WinWaitActive, ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon
 }
 return
 ; telegram_run-end
