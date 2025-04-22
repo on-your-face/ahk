@@ -1,5 +1,4 @@
-﻿; start_script-run
-if not A_IsAdmin
+﻿if not A_IsAdmin
 {
 Run *RunAs "%A_ScriptFullPath%"
 ExitApp
@@ -10,15 +9,12 @@ SetWorkingDir %A_ScriptDir%
 #Include c:\on-your-face\ahk\mods\VD.ahk-class_VD\_VD.ahk
 VD.init()
 VD.createUntil(2)
-; start_script-end
-
 ; mouse-block__autorun-start
 Mouse_Blocked := false
 Run,mods\nomousy.exe / hide
 BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
-
 ; switch-lang_autorun-start
 SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
 ToggleKeyboardLayout() {
@@ -35,50 +31,27 @@ hwnd := WinActive("A")
 PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
 }
 ; switch-lang_autorun-end
-
-; soft_autorun-start
-
-; Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
-; WinWait, ahk_exe firefox.exe
-
-Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
-WinWait, ahk_exe lghub.exe
-
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
 WinWait, ahk_exe chrome.exe
-
-Run, c:\on-your-face\chrome-win\chromium.exe
-WinWait, ahk_exe chromium.exe
-
+Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
+WinWait, ahk_exe lghub.exe
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
 WinWait, ahk_exe Code.exe
-
 Run, C:\Windows\system32\cmd.exe
 WinWait, ahk_exe cmd.exe
-
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
 WinWait, ahk_exe Totalcmd64.exe
-
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
 WinWait, ahk_exe Telegram.exe
-
-; Run, c:\on-your-face\zapret-win-bundle-master\zapret-winws\preset_russia_autohostlist.cmd
-
 ; soft_autorun-end
-
-sleep, 2000
-
+sleep, 1000
 ; soft-cords_autorun-start
 EnvGet, deviceName, COMPUTERNAME
-
 ; Определяем координаты окон в зависимости от имени устройства
 windows := []
-
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
-; windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "chromium.exe",      x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1934, h: 1087})
@@ -93,8 +66,6 @@ windows.push({exe: "lghub.exe",      x: 0,     y: 0,    w: 2560, h: 1080})
 } else {
 return
 }
-
-; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
 exeName := win.exe
 WinGet, hwnd, ID, ahk_exe %exeName%
@@ -105,35 +76,18 @@ WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
 }
 }
 }
-
-WinGet, hwndCmd, ID, ahk_exe Code.exe
-if (hwndCmd) {
-WinActivate, ahk_id %hwndCmd%
-}
-
-WinGet, hwndCode, ID, ahk_exe Code.exe
-if (hwndCode) {
-WinActivate, ahk_id %hwndCode%
-}
-
 ; soft-cords_autorun-end
-
+WinActivate, ahk_exe cmd.exe
 return
-
 <^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
 return
-
 ; soft-cords_run-start
 >#sc39:: 
 EnvGet, deviceName, COMPUTERNAME
-
-; Список окон и их координаты в зависимости от устройства
 windows := []
-
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
 windows.push({exe: "chrome.exe",                    x: -1927, y: -77,  w: 1934, h: 1087})
-windows.push({exe: "chromium.exe",      x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "firefox.exe",    x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, h: 1087})
@@ -148,10 +102,8 @@ windows.push({exe: "cmd.exe",                       x: -7,    y: 0,    w: 2574, 
 windows.push({exe: "lghub.exe",                     x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "steamwebhelper.exe",            x: 0,     y: 0,	   w: 2560,	h: 1079})
 } else {
-return  ; Неизвестное устройство — выход
+return
 }
-
-; Проверка положения окон и корректировка при необходимости
 for index, win in windows {
 exeName := win.exe
 WinGet, hwnd, ID, ahk_exe %exeName%
@@ -514,52 +466,33 @@ return
 
 ; telegram-hotkeys_start
 
->#z::
-WinActivate, ahk_exe Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=nexeption
-Sleep, 200
-Send, {Esc}
-CoordMode, Mouse, Screen
-MouseMove, 2533, 49, 0
-Sleep, 200
-Click, left
-return
+; >#z::
+; WinActivate, ahk_exe Telegram.exe
+; WinWaitActive, ahk_exe Telegram.exe
+; Run, tg://resolve?domain=nexeption
+; Sleep, 200
+; Send, {Esc}
+; CoordMode, Mouse, Screen
+; MouseMove, 2533, 49, 0
+; Sleep, 200
+; Click, left
+; return
 
->#x::
-WinActivate, ahk_exe Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-CoordMode, Mouse, Screen
-MouseMove, 2295, 414, 0
-Sleep, 200
-Click, left
-clipboard := "ti_down"
-Send ^v
-MouseMove, 2358, 498, 0
-Click, left
-clipboard := ""
-return
+; >#x::
+; WinActivate, ahk_exe Telegram.exe
+; WinWaitActive, ahk_exe Telegram.exe
+; CoordMode, Mouse, Screen
+; MouseMove, 2295, 414, 0
+; Sleep, 200
+; Click, left
+; clipboard := "ti_down"
+; Send ^v
+; MouseMove, 2358, 498, 0
+; Click, left
+; clipboard := ""
+; return
 
->#c::
-Run, mods\nomousy.exe /hide
-BlockInput, MouseMove
-Mouse_Blocked := true
-WinActivate, ahk_exe Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=nexeption
-sleep, 300
-Send, {Lctrl down} {f} {Lctrl up}
-Send, {Lctrl down} {v} {Lctrl up}
-Sleep, 400
-CoordMode, Mouse, Screen
-MouseMove, 2358, 209, 0
-Sleep, 1000
-Click, left
-clipboard := ""
-Run, mods\nomousy.exe
-BlockInput, MouseMoveOff
-Mouse_Blocked := false
-return
+
 ; telegram-hotkeys_end
 
 ; Для lghub.exe (sc3A & sc1)
@@ -578,17 +511,17 @@ return
 ; return
 
 <#1::
-IfWinExist, ahk_exe chromium.exe
-WinActivate
-else
-Run, c:\on-your-face\chrome-win\chromium.exe
-return
-
-<#2::
 IfWinExist, ahk_exe chrome.exe
 WinActivate
 else
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+return
+
+<#2::
+IfWinExist, ahk_exe chromium.exe
+WinActivate
+else
+Run, c:\on-your-face\chrome-win\chromium.exe
 return
 
 ; Для Code.exe (<#a) — Windows+A
@@ -728,3 +661,33 @@ Click, left
 VD.goToDesktopNum(1)
 return
 ; rosmin-close__run-end
+
+
+; SCA-hotkeys_start
+
+>#q::
+Run, tg://resolve?domain=nexeption
+return
+
+>#w::
+Run, mods\nomousy.exe /hide
+BlockInput, MouseMove
+Mouse_Blocked := true
+WinActivate, ahk_exe Telegram.exe
+WinWaitActive, ahk_exe Telegram.exe
+Run, tg://resolve?domain=nexeption
+sleep, 300
+Send, {Lctrl down} {f} {Lctrl up}
+Send, {Lctrl down} {v} {Lctrl up}
+Sleep, 400
+CoordMode, Mouse, Screen
+MouseMove, 2358, 209, 0
+Sleep, 1000
+Click, left
+clipboard := ""
+Run, mods\nomousy.exe
+BlockInput, MouseMoveOff
+Mouse_Blocked := false
+return
+
+; SCA-hotkeys_end
