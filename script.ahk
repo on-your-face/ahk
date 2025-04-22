@@ -617,7 +617,7 @@ return
 
 
 ; telegram_run-start
-#z::
+<#z::
 if WinExist("ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon") {
     WinActivate
     WinWaitActive, ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon
