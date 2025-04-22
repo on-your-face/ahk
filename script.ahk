@@ -59,6 +59,8 @@ WinWait, ahk_exe Totalcmd64.exe
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
 WinWait, ahk_exe Telegram.exe
 
+Run, c:\on-your-face\zapret-win-bundle-master\zapret-winws\preset_russia_autohostlist.cmd
+
 ; soft_autorun-end
 
 sleep, 2000
@@ -340,19 +342,18 @@ Send, {LAlt down}{LShift down}{Down}{LShift up}{LAlt up}
 return
 #If
 
-#If WinActive("ahk_exe chrome.exe")
+
+; browsers-hotkeys_start
+#If WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe firefox.exe")
 >+a::
 Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
 return
-
 >+d::
 Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}
 return
-
 >+f::
 Send, {F11}
 return
-
 >+z::Send, ^1
 return
 >+x::Send, ^2
@@ -367,8 +368,13 @@ return
 return
 >+m::Send, ^7
 return
-
+<^MButton::
+    Click, MButton
+    Sleep, 200
+    Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
+return
 #If
+; browsers-hotkeys_end
 
 SC03A & 1::
 if GetKeyState("LShift", "P") {
