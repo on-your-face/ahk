@@ -368,11 +368,11 @@ return
 return
 >+m::Send, ^7
 return
-<^MButton::
-    Click, MButton
-    Sleep, 200
-    Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
-return
+; <^MButton::
+;     Click, MButton
+;     Sleep, 200
+;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
+; return
 #If
 ; browsers-hotkeys_end
 
@@ -615,3 +615,66 @@ if (A_ComputerName = "nexeption-home")
     }
 }
 return
+
+
+; rosmin-base__run-start
+>#a::
+VD.goToDesktopNum(2)
+Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
+WinWait, ahk_exe chrome.exe
+WinGet, chromeID, ID, ahk_exe chrome.exe
+WinMove, ahk_id %chromeID%, , 1273, 0, 1294, 1087
+Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
+WinWait, ahk_exe chrome.exe
+WinGet, chromeID2, ID, ahk_exe chrome.exe
+WinActivate, ahk_id %chromeID2%
+Sleep, 500
+WinMove, ahk_id %chromeID2%, , -7, 0, 1294, 1087
+sleep, 100
+CoordMode, Mouse, Screen
+MouseMove, 1494, 64
+Click, left
+clipboard := "https://edu.rosminzdrav.ru/"
+Send ^v
+Send, {Enter}
+MouseMove, 196, 64
+Click, left
+clipboard := "https://24forcare.com/"
+Send ^v
+Send, {Enter}
+MouseMove, 2442, 208
+return
+; rosmin-base__run-end
+
+; rosmin-copypaste__run-start
+>#s::
+CoordMode, Mouse, Screen
+MouseMove, 1389, 467
+Click, left
+Click, left
+Click, left
+Send, {LControl down}
+Send, {c}
+Send, {LControl up}
+MouseMove, 596, 107
+Click, left
+Sleep, 50
+Send, {LControl down}
+Send, {a}
+Send, {v}
+Send, {LControl up}
+Send, {Enter}
+MouseMove, 1732, 641
+return
+; rosmin-copypaste__run-end
+
+; rosmin-close__run-start
+>#d::
+CoordMode, Mouse, Screen
+MouseMove, 2539, 22
+Click, left
+MouseMove, 1254, 16
+Click, left
+VD.goToDesktopNum(1)
+return
+; rosmin-close__run-end
