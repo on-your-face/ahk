@@ -77,6 +77,7 @@ WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
 }
 }
 ; soft-cords_autorun-end
+WinActivate, ahk_exe Code.exe
 WinActivate, ahk_exe cmd.exe
 return
 <^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
@@ -517,12 +518,12 @@ else
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
 return
 
-<#2::
-IfWinExist, ahk_exe chromium.exe
-WinActivate
-else
-Run, c:\on-your-face\chrome-win\chromium.exe
-return
+; <#2::
+; IfWinExist, ahk_exe chromium.exe
+; WinActivate
+; else
+; Run, c:\on-your-face\chrome-win\chromium.exe
+; return
 
 ; Для Code.exe (<#a) — Windows+A
 <#a::
@@ -548,18 +549,14 @@ else
 Run, C:\Windows\system32\cmd.exe
 return
 
-
-; telegram_run-start
 <#z::
-if WinExist("ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon") {
-    WinActivate
-    WinWaitActive, ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon
-} else {
-    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-    WinWaitActive, ahk_exe Telegram.exe ahk_class Qt51515QWindowIcon
-}
+IfWinExist, ahk_exe Telegram.exe
+WinActivate
+else
+Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+WinWait, ahk_exe Telegram.exe
+WinActivate
 return
-; telegram_run-end
 
 <#x::
 if (A_ComputerName = "nexeption-home")
@@ -690,4 +687,4 @@ BlockInput, MouseMoveOff
 Mouse_Blocked := false
 return
 
-; SCA-hotkeys_end
+; SCA-hotkeys_endz
