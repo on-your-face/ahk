@@ -549,13 +549,17 @@ else
 Run, C:\Windows\system32\cmd.exe
 return
 
-<#z::
+#z::
 IfWinExist, ahk_exe Telegram.exe
-WinActivate
+{
+    WinActivate
+}
 else
-Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-WinWait, ahk_exe Telegram.exe
-WinActivate
+{
+    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+    WinWait, ahk_exe Telegram.exe
+    WinActivate
+}
 return
 
 <#x::
