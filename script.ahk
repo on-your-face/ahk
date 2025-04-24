@@ -41,6 +41,12 @@ Run, C:\Windows\system32\cmd.exe
 WinWait, ahk_exe cmd.exe
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
 WinWait, ahk_exe Totalcmd64.exe
+
+global telegram_hwnd
+telegram_hwnd := WinExist("ahk_exe Telegram.exe")
+
+sleep, 300
+
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
 WinWait, ahk_exe Telegram.exe
 ; soft_autorun-end
@@ -549,16 +555,25 @@ else
 Run, C:\Windows\system32\cmd.exe
 return
 
-#z::
-IfWinExist, ahk_exe Telegram.exe
+<#z::
+; Проверка: актуален ли hwnd (существует ли такое окно)
+if telegram_hwnd && WinExist("ahk_id " . telegram_hwnd)
 {
-    WinActivate
+    WinActivate, ahk_id %telegram_hwnd%
 }
 else
 {
-    Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-    WinWait, ahk_exe Telegram.exe
-    WinActivate
+    ; Если Telegram не найден или hwnd устарел
+    if !WinExist("ahk_exe Telegram.exe")
+    {
+        Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+        WinWait, ahk_exe Telegram.exe
+    }
+
+    ; Обновляем hwnd и активируем
+    telegram_hwnd := WinExist("ahk_exe Telegram.exe")
+    if telegram_hwnd
+        WinActivate, ahk_id %telegram_hwnd%
 }
 return
 
