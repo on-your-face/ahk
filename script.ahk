@@ -617,6 +617,40 @@ Run, steam://rungameid/570
 return
 
 
+
+
+
+; rwin-hotkeys__start
+
+; telegram-nexeption__start
+>#q::
+Run, tg://resolve?domain=nexeption
+return
+; telegram-nexeption__end
+
+; telegram-hashtag-search__start
+>#w::
+Run, mods\nomousy.exe /hide
+BlockInput, MouseMove
+Mouse_Blocked := true
+WinActivate, ahk_exe Telegram.exe
+WinWaitActive, ahk_exe Telegram.exe
+Run, tg://resolve?domain=nexeption
+sleep, 300
+Send, {Lctrl down} {f} {Lctrl up}
+Send, {Lctrl down} {v} {Lctrl up}
+Sleep, 400
+CoordMode, Mouse, Screen
+MouseMove, 2358, 209, 0
+Sleep, 1000
+Click, left
+clipboard := ""
+Run, mods\nomousy.exe
+BlockInput, MouseMoveOff
+Mouse_Blocked := false
+return
+; telegram-hashtag-search__end
+
 ; rosmin-base__run-start
 >#a::
 VD.goToDesktopNum(2)
@@ -644,9 +678,9 @@ Send ^v
 Send, {Enter}
 MouseMove, 2442, 208
 return
-; rosmin-base__run-end
+; rosmin-base__end
 
-; rosmin-copypaste__run-start
+; rosmin-copypaste__start
 >#s::
 CoordMode, Mouse, Screen
 MouseMove, 1389, 467
@@ -666,9 +700,9 @@ Send, {LControl up}
 Send, {Enter}
 MouseMove, 1732, 641
 return
-; rosmin-copypaste__run-end
+; rosmin-copypaste__end
 
-; rosmin-close__run-start
+; rosmin-close__start
 >#d::
 CoordMode, Mouse, Screen
 MouseMove, 2539, 22
@@ -677,34 +711,6 @@ MouseMove, 1254, 16
 Click, left
 VD.goToDesktopNum(1)
 return
-; rosmin-close__run-end
+; rosmin-close__end
 
-
-; SCA-hotkeys_start
-
->#q::
-Run, tg://resolve?domain=nexeption
-return
-
->#w::
-Run, mods\nomousy.exe /hide
-BlockInput, MouseMove
-Mouse_Blocked := true
-WinActivate, ahk_exe Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=nexeption
-sleep, 300
-Send, {Lctrl down} {f} {Lctrl up}
-Send, {Lctrl down} {v} {Lctrl up}
-Sleep, 400
-CoordMode, Mouse, Screen
-MouseMove, 2358, 209, 0
-Sleep, 1000
-Click, left
-clipboard := ""
-Run, mods\nomousy.exe
-BlockInput, MouseMoveOff
-Mouse_Blocked := false
-return
-
-; SCA-hotkeys_endz
+; rwin-hotkeys_end
