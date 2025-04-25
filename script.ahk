@@ -462,15 +462,15 @@ Send {Enter}
 return
 #If
 
->#1::
-CoordMode, Mouse, Screen
-MouseMove, -926, 436, 0
-return
+; >#1::
+; CoordMode, Mouse, Screen
+; MouseMove, -926, 436, 0
+; return
 
->#2::
-CoordMode, Mouse, Screen
-MouseMove, 1340, 498, 0
-return
+; >#2::
+; CoordMode, Mouse, Screen
+; MouseMove, 1340, 498, 0
+; return
 
 ; telegram-hotkeys_start
 
@@ -616,11 +616,14 @@ Run, steam://rungameid/570
 }
 return
 
-
-
-
-
 ; rwin-hotkeys__start
+
+; location-windows__start
+>#1::
+; WinActivate, ahk_exe chrome.exe
+WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
+return
+; location-windows__end
 
 ; telegram-nexeption__start
 >#q::
