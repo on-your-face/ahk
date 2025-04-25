@@ -15,22 +15,6 @@ Run,mods\nomousy.exe / hide
 BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
-; switch-lang_autorun-start
-SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
-ToggleKeyboardLayout() {
-static isRussian := false
-isRussian := !isRussian
-if isRussian
-SetKeyboardLayout(0x0419) ; ru-RU
-else
-SetKeyboardLayout(0x0409) ; en-US
-}
-SetKeyboardLayout(LocaleID) {
-hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
-hwnd := WinActive("A")
-PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
-}
-; switch-lang_autorun-end
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
 WinWait, ahk_exe chrome.exe
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
@@ -83,8 +67,25 @@ WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
 }
 }
 ; soft-cords_autorun-end
-WinActivate, ahk_exe Code.exe
 WinActivate, ahk_exe cmd.exe
+WinActivate, ahk_exe Code.exe
+WinWaitActive, ahk_exe Code.exe, , 3
+; switch-lang_autorun-start
+SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
+ToggleKeyboardLayout() {
+static isRussian := false
+isRussian := !isRussian
+if isRussian
+SetKeyboardLayout(0x0419) ; ru-RU
+else
+SetKeyboardLayout(0x0409) ; en-US
+}
+SetKeyboardLayout(LocaleID) {
+hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
+hwnd := WinActive("A")
+PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
+}
+; switch-lang_autorun-end
 return
 <^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
 return
