@@ -280,7 +280,7 @@ return
 <#sc1:: Run, C:\Program Files\CloseAll\CloseAll.exe /NOUI
 return
 
-<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe hibernate
+<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe standby
 return
 
 <^<#<!Left:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
