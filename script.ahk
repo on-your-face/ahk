@@ -620,8 +620,8 @@ return
 
 ; location-windows__start
 >#1::
-; WinActivate, ahk_exe chrome.exe
 WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
+WinActivate, ahk_exe chrome.exe
 return
 ; location-windows__end
 
