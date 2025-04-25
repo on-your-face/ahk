@@ -447,6 +447,13 @@ Send ^v
 Send {Enter}
 return
 
+>+c::
+clipboard := "cd /d ""c:\OSPanel\domains\test-wordpress\wp-content\themes\hazze""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+
 >+q::
 clipboard := "git add . && git commit -m ok && git push"
 ClipWait
