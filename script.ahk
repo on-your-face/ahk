@@ -608,7 +608,7 @@ Run, tg://resolve?domain=nexeption
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
-Sleep, 1000
+Sleep, 1500
 Send, {Down} {Enter}
 clipboard := ""
 Run, mods\nomousy.exe
