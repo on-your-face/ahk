@@ -307,7 +307,7 @@ Send, {LAlt down}{LShift down}{Down}{LShift up}{LAlt up}
 return
 #If
 
-; telegram-hotkeys_start
+; telegram-hotkeys__start
 #If WinActive("ahk_exe Telegram.exe")
 >+a::
 Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
@@ -338,10 +338,10 @@ return
 ;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
 ; return
 #If
-; telegram-hotkeys_end
+; telegram-hotkeys__end
 
 
-; browsers-hotkeys_start
+; browsers-hotkeys__start
 if WinActive("ahk_exe chrome.exe") 
 || WinActive("ahk_exe chromium.exe") 
 || WinActive("ahk_exe firefox.exe")
@@ -374,7 +374,7 @@ return
 ;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
 ; return
 #If
-; browsers-hotkeys_end
+; browsers-hotkeys__end
 
 SC03A & 1::
 if GetKeyState("LShift", "P") {
@@ -468,47 +468,6 @@ Send ^v
 Send {Enter}
 return
 #If
-
-; >#1::
-; CoordMode, Mouse, Screen
-; MouseMove, -926, 436, 0
-; return
-
-; >#2::
-; CoordMode, Mouse, Screen
-; MouseMove, 1340, 498, 0
-; return
-
-; telegram-hotkeys_start
-
-; >#z::
-; WinActivate, ahk_exe Telegram.exe
-; WinWaitActive, ahk_exe Telegram.exe
-; Run, tg://resolve?domain=nexeption
-; Sleep, 200
-; Send, {Esc}
-; CoordMode, Mouse, Screen
-; MouseMove, 2533, 49, 0
-; Sleep, 200
-; Click, left
-; return
-
-; >#x::
-; WinActivate, ahk_exe Telegram.exe
-; WinWaitActive, ahk_exe Telegram.exe
-; CoordMode, Mouse, Screen
-; MouseMove, 2295, 414, 0
-; Sleep, 200
-; Click, left
-; clipboard := "ti_down"
-; Send ^v
-; MouseMove, 2358, 498, 0
-; Click, left
-; clipboard := ""
-; return
-
-
-; telegram-hotkeys_end
 
 ; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
@@ -649,11 +608,8 @@ Run, tg://resolve?domain=nexeption
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
-Sleep, 400
-CoordMode, Mouse, Screen
-MouseMove, 2358, 209, 0
 Sleep, 1000
-Click, left
+Send, {Down} {Enter}
 clipboard := ""
 Run, mods\nomousy.exe
 BlockInput, MouseMoveOff
