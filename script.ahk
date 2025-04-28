@@ -1,14 +1,23 @@
-﻿if not A_IsAdmin
-{
-Run *RunAs "%A_ScriptFullPath%"
-ExitApp
-}
+﻿#NoTrayIcon
+#Persistent
+#UseHook
 #SingleInstance Force
+
 SetWorkingDir %A_ScriptDir%
+
 #Include c:\on-your-face\ahk\mods\VD.ahk-class_VD\VD.ahk
 #Include c:\on-your-face\ahk\mods\VD.ahk-class_VD\_VD.ahk
+
+if not A_IsAdmin
+{
+    Run *RunAs "%A_ScriptFullPath%"
+    ExitApp
+}
+
 VD.init()
 VD.createUntil(2)
+
+
 ; mouse-block__autorun-start
 Mouse_Blocked := false
 Run,mods\nomousy.exe / hide
@@ -26,13 +35,12 @@ WinWait, ahk_exe cmd.exe
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
 WinWait, ahk_exe Totalcmd64.exe
 
+Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
+WinWait, ahk_exe Telegram.exe
+
 global telegram_hwnd
 telegram_hwnd := WinExist("ahk_exe Telegram.exe")
 
-sleep, 300
-
-Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-WinWait, ahk_exe Telegram.exe
 ; soft_autorun-end
 sleep, 1000
 ; soft-cords_autorun-start
