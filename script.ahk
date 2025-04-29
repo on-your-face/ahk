@@ -17,7 +17,6 @@ if not A_IsAdmin
 VD.init()
 VD.createUntil(2)
 
-
 ; mouse-block__autorun-start
 Mouse_Blocked := false
 Run,mods\nomousy.exe / hide
@@ -60,6 +59,7 @@ windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
 windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087})
+windows.push({exe: "firefox.exe",     x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",        x: -7,    y: 0,    w: 2574, h: 1087})
@@ -115,6 +115,7 @@ windows.push({exe: "lghub.exe",                     x: -1920, y: -77,  w: 1920, 
 } else if (deviceName = "nexeption-home") {
 windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
 windows.push({exe: "chrome.exe",                    x: -7,    y: 0,    w: 2574, h: 1087})
+windows.push({exe: "firefox.exe",     x: -7,	y: 0,	w: 2574,	h: 1087})
 windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",                       x: -7,    y: 0,    w: 2574, h: 1087})
@@ -139,7 +140,20 @@ return
 ; firefox_style-start
 >#sc1::
 WinClose, ahk_exe firefox.exe
-userChromePath := "c:\users\user\appdata\roaming\mozilla\firefox\Profiles\b8lnxhe3.default-release\chrome\userChrome.css"
+
+; Получение имени компьютера
+EnvGet, computerName, COMPUTERNAME
+
+; Определение пути на основе имени компьютера
+if (computerName = "nexeption-tpls") {
+    userChromePath := "C:\Users\user\AppData\Roaming\Mozilla\Firefox\Profiles\b8lnxhe3.default-release\chrome\userChrome.css"
+} else if (computerName = "nexeption-home") {
+    userChromePath := "C:\Users\user\AppData\Roaming\Mozilla\Firefox\Profiles\2krzrnlu.default-release\chrome\userChrome.css"
+} else {
+    MsgBox, Неизвестное имя компьютера: %computerName%. Скрипт остановлен.
+    return
+}
+
 styleBlock =
 (
 <style>
@@ -168,11 +182,13 @@ background-color: #000000 !important;
 }
 </style>
 )
+
 if FileExist(userChromePath) {
-FileDelete, %userChromePath%
+    FileDelete, %userChromePath%
 } else {
-FileAppend, %styleBlock%, %userChromePath%
+    FileAppend, %styleBlock%, %userChromePath%
 }
+
 Sleep, 1000
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
 return
