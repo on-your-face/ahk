@@ -379,11 +379,11 @@ return
 return
 >+m::Send, ^7
 return
-; <^MButton::
-;     Click, MButton
-;     Sleep, 200
-;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
-; return
+<^MButton::
+    Click, MButton
+    Sleep, 200
+    Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
+return
 #If
 ; browsers-hotkeys__end
 
