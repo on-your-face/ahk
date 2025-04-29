@@ -369,8 +369,8 @@ return
 
 
 ; browsers-hotkeys__start
-if WinActive("ahk_exe chrome.exe") 
-|| WinActive("ahk_exe chromium.exe") 
+#If WinActive("ahk_exe chrome.exe")
+|| WinActive("ahk_exe chromium.exe")
 || WinActive("ahk_exe firefox.exe")
 >+a::
 Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
