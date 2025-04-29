@@ -395,7 +395,7 @@ return
 return
 >+m::Send, ^7
 return
-<^LButton::
+<^MButton::
 Send, {LControl down}{LButton down}{LButton up}{LControl up}
     Sleep, 200
     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
