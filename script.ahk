@@ -474,8 +474,8 @@ Send ^v
 Send {Enter}
 return
 
->+c::
-clipboard := "cd /d ""c:\OSPanel\domains\test-wordpress\wp-content\themes\hazze""" 
+>+sc29::
+clipboard := "cd /d ""c:\on-your-face\backups""" 
 ClipWait
 Send ^v
 Send {Enter}
