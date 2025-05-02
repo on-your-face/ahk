@@ -121,6 +121,7 @@ windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, 
 windows.push({exe: "cmd.exe",                       x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "lghub.exe",                     x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "steamwebhelper.exe",            x: 0,     y: 0,	   w: 2560,	h: 1079})
+windows.push({exe: "qbittorrent.exe",            x: -7,	y: 0,	w: 2574,	h: 1087})
 } else {
 return
 }
@@ -523,6 +524,15 @@ IfWinExist, ahk_exe chrome.exe
 WinActivate
 else
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+return
+
+<#3::
+IfWinExist, ahk_exe qbittorrent.exe
+{
+    WinActivate
+}
+else
+Run, C:\Program Files\qBittorrent\qbittorrent.exe
 return
 
 ; <#2::
