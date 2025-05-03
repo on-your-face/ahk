@@ -35,7 +35,6 @@ Run, C:\Windows\system32\cmd.exe
 WinWait, ahk_exe cmd.exe
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
 WinWait, ahk_exe Totalcmd64.exe
-
 Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
 WinWait, ahk_exe Telegram.exe
 
