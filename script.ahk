@@ -498,6 +498,8 @@ IfWinExist, ahk_exe qbittorrent.exe
 }
 else
 Run, C:\Program Files\qBittorrent\qbittorrent.exe
+WinWait, ahk_exe qbittorrent.exe
+WinActivate
 return
 
 <#a::
