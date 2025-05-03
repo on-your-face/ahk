@@ -337,37 +337,11 @@ return
 
 ; telegram-hotkeys__start
 #If WinActive("ahk_exe Telegram.exe")
->+a::
-Send, {Lalt Down}{Left Down}{Lalt Up}{Left Up}
+>+q::
+Send, {Lctrl down}{Lshift down}{M}{Lctrl up}{Lshift up}
 return
->+d::
-Send, {Lalt Down}{Right Down}{Lalt Up}{Right Up}
-return
->+f::
-Send, {F11}
-return
->+z::Send, ^1
-return
->+x::Send, ^2
-return
->+c::Send, ^3
-return
->+v::Send, ^4
-return
->+b::Send, ^5
-return
->+n::Send, ^6
-return
->+m::Send, ^7
-return
-; <^MButton::
-;     Click, MButton
-;     Sleep, 200
-;     Send, {Lctrl down}{Tab down}{Lctrl up}{Tab up}
-; return
 #If
 ; telegram-hotkeys__end
-
 
 ; browsers-hotkeys__start
 #If WinActive("ahk_exe chrome.exe")
@@ -497,20 +471,12 @@ Send {Enter}
 return
 #If
 
-; Для lghub.exe (sc3A & sc1)
 sc3A & sc1::
 IfWinExist, ahk_exe lghub.exe
 WinActivate
 else
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
-
-; <#1::
-; IfWinExist, ahk_exe firefox.exe
-; WinActivate
-; else
-; Run, "C:\Program Files\Mozilla Firefox\firefox.exe"
-; return
 
 <#1::
 IfWinExist, ahk_exe firefox.exe
@@ -535,14 +501,6 @@ else
 Run, C:\Program Files\qBittorrent\qbittorrent.exe
 return
 
-; <#2::
-; IfWinExist, ahk_exe chromium.exe
-; WinActivate
-; else
-; Run, c:\on-your-face\chrome-win\chromium.exe
-; return
-
-; Для Code.exe (<#a) — Windows+A
 <#a::
 IfWinExist, ahk_exe Code.exe
 WinActivate
@@ -550,7 +508,7 @@ else
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
 return
 
-; Для Totalcmd64.exe (<#q) — Windows+Q
+
 <#q::
 IfWinExist, ahk_exe Totalcmd64.exe
 WinActivate
@@ -558,7 +516,7 @@ else
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
 return
 
-; Для cmd.exe (<#s) — Windows+S
+
 <#s::
 IfWinExist, ahk_exe cmd.exe
 WinActivate
