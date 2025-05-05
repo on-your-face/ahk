@@ -448,7 +448,7 @@ Send ^v
 Send {Enter}
 return
 
->+sc29::
+>+c::
 clipboard := "cd /d ""c:\on-your-face\backups""" 
 ClipWait
 Send ^v
