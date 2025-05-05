@@ -17,12 +17,13 @@ if not A_IsAdmin
 VD.init()
 VD.createUntil(2)
 
-; mouse-block__autorun-start
+; mouse-block__autorun-begin
 Mouse_Blocked := false
 Run,mods\nomousy.exe / hide
 BlockInput, MouseMove
 Mouse_Blocked := true
 ; mouse-block__autorun-end
+
 Run, C:\Program Files\Google\Chrome\Application\chrome.exe
 WinWait, ahk_exe chrome.exe
 Run, C:\Program Files\Mozilla Firefox\firefox.exe
@@ -40,12 +41,10 @@ WinWait, ahk_exe Telegram.exe
 
 global telegram_hwnd
 telegram_hwnd := WinExist("ahk_exe Telegram.exe")
-
-; soft_autorun-end
 sleep, 1000
-; soft-cords_autorun-start
+
+; window-cords__autorun-begin
 EnvGet, deviceName, COMPUTERNAME
-; Определяем координаты окон в зависимости от имени устройства
 windows := []
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
@@ -76,26 +75,29 @@ WinMove, ahk_id %hwnd%, , win.x, win.y, win.w, win.h
 }
 }
 }
-; soft-cords_autorun-end
+; window-cords__autorun-end
+
 WinActivate, ahk_exe cmd.exe
 WinActivate, ahk_exe Code.exe
 WinWaitActive, ahk_exe Code.exe, , 3
-; switch-lang_autorun-start
-SetKeyboardLayout(0x0409) ; переключение языка на англ. со старта
+
+; switch-lang__autorun-begin
+SetKeyboardLayout(0x0409)
 ToggleKeyboardLayout() {
 static isRussian := false
 isRussian := !isRussian
 if isRussian
-SetKeyboardLayout(0x0419) ; ru-RU
+SetKeyboardLayout(0x0419)
 else
-SetKeyboardLayout(0x0409) ; en-US
+SetKeyboardLayout(0x0409)
 }
 SetKeyboardLayout(LocaleID) {
 hKL := DllCall("LoadKeyboardLayout", "Str", Format("{:08X}", LocaleID), "UInt", 1)
 hwnd := WinActive("A")
-PostMessage, 0x50, 0, hKL,, ahk_id %hwnd% ; Меняем в активном окне
+PostMessage, 0x50, 0, hKL,, ahk_id %hwnd%
 }
-; switch-lang_autorun-end
+; switch-lang__autorun-end
+
 return
 <^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
 return
@@ -253,72 +255,6 @@ return CurrentLayout
 return
 ; checklang__run-end
 
->^q:: SendPlay, ^o
-return
-
->^w:: SendPlay, {F5}
-return
-
->^<+w:: SendPlay, ^{F5}
-return
-
->^e:: SendPlay, {Enter}
-return
-
->^a:: SendPlay, {Backspace}
-return
-
->^s:: SendPlay, {F2}
-return
-
->^d:: SendPlay, {Delete}
-return
-
->^f:: SendPlay, ^{Enter}
-return
-
-<#sc39:: SendPlay, ^t
-return
-
-<!sc1:: SendInput, {sc29}
-return
-
->^sc1:: WinClose, A
-return
-
-<#-:: SendInput, {U+2014}
-return
-
-<#<!-:: SendInput, {U+2013}
-return
-
-<#sc28:: SendInput, {U+00AB}{U+00BB}
-return
-
-<#sc35:: SendInput, {U+2026}
-return
-
-CapsLock::
-return
-
-<^<!+a:: Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
-return
-
-<#sc1:: Run, C:\Program Files\CloseAll\CloseAll.exe /NOUI
-return
-
-<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe standby 
-return
-
-<^<#<!Left:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
-return
-
-<^<#<!Up:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin reboot
-return
-
-<^<#<!Down:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin poweroff
-return
-
 #If WinActive("ahk_exe Code.exe")
 >+1::
 Send, {F1}
@@ -333,14 +269,6 @@ return
 Send, {LAlt down}{LShift down}{Down}{LShift up}{LAlt up}
 return
 #If
-
-; telegram-hotkeys__start
-#If WinActive("ahk_exe Telegram.exe")
->+q::
-Send, {Lctrl down}{Lshift down}{M}{Lctrl up}{Lshift up}
-return
-#If
-; telegram-hotkeys__end
 
 ; browsers-hotkeys__start
 #If WinActive("ahk_exe chrome.exe")
@@ -376,99 +304,6 @@ Send, {LControl down}{LButton down}{LButton up}{LControl up}
 return
 #If
 ; browsers-hotkeys__end
-
-SC03A & 1::
-if GetKeyState("LShift", "P") {
-VD.MoveWindowToDesktopNum("A", 1)
-}
-else if GetKeyState("LAlt", "P") {
-VD.MoveWindowToDesktopNum("A", 1)
-VD.goToDesktopNum(1)
-}
-else {
-VD.goToDesktopNum(1)
-}
-return
-SC03A & 2::
-if GetKeyState("LShift", "P") {
-VD.MoveWindowToDesktopNum("A", 2)
-}
-else if GetKeyState("LAlt", "P") {
-VD.MoveWindowToDesktopNum("A", 2)
-VD.goToDesktopNum(2)
-}
-else {
-VD.goToDesktopNum(2)
-}
-return
-SC03A & 3::
-if GetKeyState("LShift", "P") {
-VD.MoveWindowToDesktopNum("A", 3)
-}
-else if GetKeyState("LAlt", "P") {
-VD.MoveWindowToDesktopNum("A", 3)
-VD.goToDesktopNum(3)
-}
-else {
-VD.goToDesktopNum(3)
-}
-return
-SC03A & 4::
-if GetKeyState("LShift", "P") {
-VD.MoveWindowToDesktopNum("A", 4)
-}
-else if GetKeyState("LAlt", "P") {
-VD.MoveWindowToDesktopNum("A", 4)
-VD.goToDesktopNum(4)
-}
-else {
-VD.goToDesktopNum(4)
-}
-return
-
-#If WinActive("ahk_exe cmd.exe")
->+sc1::
-clipboard := "cls"
-ClipWait
-Send ^v
-Send {Enter}
-return
-
->+z::
-clipboard := "cd /d ""C:\on-your-face\bookmarks\""" 
-ClipWait
-Send ^v
-Send {Enter}
-return
-
->+x::
-clipboard := "cd /d ""C:\on-your-face\ahk\""" 
-ClipWait
-Send ^v
-Send {Enter}
-return
-
->+c::
-clipboard := "cd /d ""c:\on-your-face\backups""" 
-ClipWait
-Send ^v
-Send {Enter}
-return
-
->+q::
-clipboard := "git add . && git commit -m ok && git push"
-ClipWait
-Send ^v
-Send {Enter}
-return
-
->+w::
-clipboard := "git pull origin main"
-ClipWait
-Send ^v
-Send {Enter}
-return
-#If
 
 sc3A & sc1::
 IfWinExist, ahk_exe lghub.exe
@@ -682,4 +517,149 @@ VD.goToDesktopNum(1)
 return
 ; rosmin-close__end
 
-; rwin-hotkeys_end
+; hotkeys-vd__begin
+SC03A & 1::
+if GetKeyState("LShift", "P") {
+VD.MoveWindowToDesktopNum("A", 1)
+}
+else if GetKeyState("LAlt", "P") {
+VD.MoveWindowToDesktopNum("A", 1)
+VD.goToDesktopNum(1)
+}
+else {
+VD.goToDesktopNum(1)
+}
+return
+SC03A & 2::
+if GetKeyState("LShift", "P") {
+VD.MoveWindowToDesktopNum("A", 2)
+}
+else if GetKeyState("LAlt", "P") {
+VD.MoveWindowToDesktopNum("A", 2)
+VD.goToDesktopNum(2)
+}
+else {
+VD.goToDesktopNum(2)
+}
+return
+SC03A & 3::
+if GetKeyState("LShift", "P") {
+VD.MoveWindowToDesktopNum("A", 3)
+}
+else if GetKeyState("LAlt", "P") {
+VD.MoveWindowToDesktopNum("A", 3)
+VD.goToDesktopNum(3)
+}
+else {
+VD.goToDesktopNum(3)
+}
+return
+SC03A & 4::
+if GetKeyState("LShift", "P") {
+VD.MoveWindowToDesktopNum("A", 4)
+}
+else if GetKeyState("LAlt", "P") {
+VD.MoveWindowToDesktopNum("A", 4)
+VD.goToDesktopNum(4)
+}
+else {
+VD.goToDesktopNum(4)
+}
+return
+; hotkeys-vd__end
+
+; hotkeys__begin
+>^q:: SendPlay, ^o
+return
+>^w:: SendPlay, {F5}
+return
+>^<+w:: SendPlay, ^{F5}
+return
+>^e:: SendPlay, {Enter}
+return
+>^a:: SendPlay, {Backspace}
+return
+>^s:: SendPlay, {F2}
+return
+>^d:: SendPlay, {Delete}
+return
+>^f:: SendPlay, ^{Enter}
+return
+<#sc39:: SendPlay, ^t
+return
+<!sc1:: SendInput, {sc29}
+return
+>^sc1:: WinClose, A
+return
+<#-:: SendInput, {U+2014}
+return
+<#<!-:: SendInput, {U+2013}
+return
+<#sc28:: SendInput, {U+00AB}{U+00BB}
+return
+<#sc35:: SendInput, {U+2026}
+return
+CapsLock::
+return
+<^<!+a:: Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
+return
+<#sc1:: Run, C:\Program Files\CloseAll\CloseAll.exe /NOUI
+return
+<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe standby 
+return
+<^<#<!Left:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
+return
+<^<#<!Up:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin reboot
+return
+<^<#<!Down:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin poweroff
+return
+; hotkeys__end
+
+; hotkeys-telegram__begin
+#If WinActive("ahk_exe Telegram.exe")
+>+q::
+Send, {Lctrl down}{Lshift down}{M}{Lctrl up}{Lshift up}
+return
+#If
+; hotkeys-telegram__end
+
+; hotkeys-cmd__begin
+#If WinActive("ahk_exe cmd.exe")
+>+sc1::
+clipboard := "cls"
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+z::
+clipboard := "cd /d ""C:\on-your-face\bookmarks\""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+x::
+clipboard := "cd /d ""C:\on-your-face\ahk\""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+c::
+clipboard := "cd /d ""c:\on-your-face\backups""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+q::
+clipboard := "git add . && git commit -m ok && git push"
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+w::
+clipboard := "git pull origin main"
+ClipWait
+Send ^v
+Send {Enter}
+return
+#If
+; hotkeys-cmd__end
