@@ -363,7 +363,7 @@ return
 
 ; telegram-nexeption__start
 >#q::
-Run, tg://resolve?domain=nexeption
+Run, tg://resolve?domain=on_your_face_beach
 return
 ; telegram-nexeption__end
 
