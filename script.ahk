@@ -363,7 +363,7 @@ return
 
 ; telegram-nexeption__start
 >#q::
-Run, tg://resolve?domain=nexeption
+Run, tg://resolve?domain=on_your_face_beach
 return
 ; telegram-nexeption__end
 
@@ -595,3 +595,26 @@ Send {Enter}
 return
 #If
 ; hotkeys-cmd__end
+
+; kcd 2
+#If WinActive("ahk_exe KingdomCome.exe")
+toggle := false
+
+Home::
+toggle := !toggle
+if (toggle) {
+    Send, {w down}
+    SetTimer, RotateMouse, 2000
+} else {
+    Send, {w up}
+    SetTimer, RotateMouse, Off
+}
+return
+
+RotateMouse:
+    ; Поворот мыши на 180 градусов вправо (относительно текущего положения)
+    ; Движение мыши по горизонтали вправо (большое значение — быстрое вращение)
+    ; Можно скорректировать значение 3000 в зависимости от чувствительности
+    DllCall("mouse_event", "UInt", 0x01, "Int", 3000, "Int", 0, "UInt", 0, "UPtr", 0)
+return
+#If
