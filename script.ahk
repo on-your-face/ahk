@@ -374,7 +374,7 @@ BlockInput, MouseMove
 Mouse_Blocked := true
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=on_your_face_beach
+Run, tg://resolve?domain=ogk1d
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
