@@ -251,7 +251,7 @@ else
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
 
-<#1::
+#1::
 IfWinExist, Google Chrome ahk_exe chrome.exe
     WinActivate
 else
@@ -259,7 +259,8 @@ else
 return
 
 <#2::
-IfWinExist, DevTools ahk_exe chrome.exe
+SetTitleMatchMode, 2
+IfWinExist,  DevTools ahk_exe chrome.exe
     WinActivate
 return
 
