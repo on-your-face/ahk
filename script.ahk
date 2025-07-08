@@ -252,10 +252,15 @@ Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
 
 <#1::
-IfWinExist, ahk_exe chrome.exe
-WinActivate
+IfWinExist, Google Chrome ahk_exe chrome.exe
+    WinActivate
 else
-Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+    Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+return
+
+<#2::
+IfWinExist, DevTools ahk_exe chrome.exe
+    WinActivate
 return
 
 <#3::
