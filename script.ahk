@@ -576,6 +576,12 @@ Send ^v
 Send {Enter}
 return
 >+c::
+clipboard := "cd /d ""c:\on-your-face\nexeption (site)""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+v::
 clipboard := "cd /d ""c:\on-your-face\backups""" 
 ClipWait
 Send ^v
