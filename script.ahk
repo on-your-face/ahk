@@ -251,16 +251,26 @@ else
 Run, C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe
 return
 
-#1::
-IfWinExist, Google Chrome ahk_exe chrome.exe
-    WinActivate
+<#1::
+SetTitleMatchMode, 2 ; ищем по части заголовка
+
+IfWinExist, Google Chrome ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe
+{
+    WinGetTitle, winTitle
+    if !InStr(winTitle, "DevTools")
+        WinActivate
+    else
+        Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+}
 else
+{
     Run, C:\Program Files\Google\Chrome\Application\chrome.exe
+}
 return
 
 <#2::
 SetTitleMatchMode, 2
-IfWinExist,  DevTools ahk_exe chrome.exe
+IfWinExist, DevTools ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe
     WinActivate
 return
 
