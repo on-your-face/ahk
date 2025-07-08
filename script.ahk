@@ -371,7 +371,7 @@ return
 ; rwin-hotkeys__start
 
 ; location-windows__start
->#1::
+>#<+sc39::
 WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
 WinActivate, ahk_exe chrome.exe
 return
@@ -379,7 +379,7 @@ return
 
 ; telegram-nexeption__start
 >#q::
-Run, tg://resolve?domain=g_k1dd
+Run, tg://resolve?domain=g_k1d
 return
 ; telegram-nexeption__end
 
@@ -390,7 +390,7 @@ BlockInput, MouseMove
 Mouse_Blocked := true
 WinActivate, ahk_exe Telegram.exe
 WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=g_k1dd
+Run, tg://resolve?domain=g_k1d
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
@@ -617,6 +617,11 @@ Send {Enter}
 return
 #If
 ; hotkeys-cmd__end
+
+; mouse-jump__begin
+
+; mouse-jump__end
+
 
 ; kcd 2
 #If WinActive("ahk_exe KingdomCome.exe")
