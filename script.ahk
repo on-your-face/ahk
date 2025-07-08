@@ -619,7 +619,15 @@ return
 ; hotkeys-cmd__end
 
 ; mouse-jump__begin
+#1::
+CoordMode, Mouse, Screen
+MouseMove, -992, 431, 0 ; 0 означает мгновенное перемещение
+return
 
+#2::
+CoordMode, Mouse, Screen
+MouseMove, 1395, 514, 0 ; то же самое — мгновенно
+return
 ; mouse-jump__end
 
 
