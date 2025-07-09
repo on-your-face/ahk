@@ -579,13 +579,13 @@ ClipWait
 Send ^v
 Send {Enter}
 return
->+z::
+>+x::
 clipboard := "cd /d ""C:\on-your-face\bookmarks\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+x::
+>+z::
 clipboard := "cd /d ""C:\on-your-face\ahk\""" 
 ClipWait
 Send ^v
