@@ -631,7 +631,14 @@ return
 ; mouse-jump__end
 
 
-; kcd 2
+<#v::
+IfWinExist, ahk_exe KingdomCome.exe
+    WinActivate
+else
+    Run, c:\Games\Kingdom.Come.Deliverance.II.Gold.Edition-InsaneRamZes\Bin\Win64MasterMasterSteamPGO\KingdomCome.exe
+return
+
+; kcd 2 hotkey
 #If WinActive("ahk_exe KingdomCome.exe")
 toggle := false
 
