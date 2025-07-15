@@ -45,7 +45,7 @@ sleep, 1000
 EnvGet, deviceName, COMPUTERNAME
 windows := []
 if (deviceName = "nexeption-tpls") {
-windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "Telegram.exe",   x: 2174,	y: 0,	w: 386,	h: 1080})
 windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
 
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
@@ -53,7 +53,7 @@ windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1934, h: 1087})
 windows.push({exe: "lghub.exe",      x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
-windows.push({exe: "Telegram.exe",   x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "Telegram.exe",   x: 2174,	y: 0,	w: 386,	h: 1080})
 windows.push({exe: "chrome.exe",     x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
@@ -103,7 +103,7 @@ return
 EnvGet, deviceName, COMPUTERNAME
 windows := []
 if (deviceName = "nexeption-tpls") {
-windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "Telegram.exe",                  x: 2174,	y: 0,	w: 386,	h: 1080})
 windows.push({exe: "chrome.exe",                    x: -1927, y: -77,  w: 1934, h: 1087})
 ; 
 windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
@@ -111,7 +111,7 @@ windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, 
 windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1934, h: 1087})
 windows.push({exe: "lghub.exe",                     x: -1920, y: -77,  w: 1920, h: 1080})
 } else if (deviceName = "nexeption-home") {
-windows.push({exe: "Telegram.exe",                  x: 2180,  y: 0,    w: 380,  h: 1080})
+windows.push({exe: "Telegram.exe",                  x: 2174,	y: 0,	w: 386,	h: 1080})
 windows.push({exe: "chrome.exe",                    x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "Code.exe",                      x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe",                x: -7,    y: 0,    w: 2574, h: 1087})
