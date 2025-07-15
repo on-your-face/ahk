@@ -330,15 +330,15 @@ else
 }
 return
 
-<#x::
-if (A_ComputerName = "nexeption-home")
-{
-IfWinExist, ahk_exe steamwebhelper.exe
-WinActivate
-else
-Run, "C:\Program Files (x86)\Steam\steam.exe"
-}
-return
+; <#x::
+; if (A_ComputerName = "nexeption-home")
+; {
+; IfWinExist, ahk_exe steamwebhelper.exe
+; WinActivate
+; else
+; Run, "C:\Program Files (x86)\Steam\steam.exe"
+; }
+; return
 
 <^<#q::
 if (A_ComputerName = "nexeption-home")
@@ -631,7 +631,7 @@ return
 ; mouse-jump__end
 
 
-<#v::
+<#x::
 IfWinExist, ahk_exe KingdomCome.exe
     WinActivate
 else
