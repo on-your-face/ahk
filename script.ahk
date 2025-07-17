@@ -292,12 +292,25 @@ else
 Run, C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe
 return
 
-
 <#q::
 IfWinExist, ahk_exe Totalcmd64.exe
 WinActivate
 else
 Run, C:\on-your-face\totalCMD\Totalcmd64.exe
+return
+
+<#w::
+IfWinExist, ahk_exe xnviewmp.exe
+{
+    WinActivate
+}
+else
+{
+    Run, "C:\Program Files\XnViewMP\xnviewmp.exe"
+    WinWait, ahk_exe xnviewmp.exe
+    ; Ждём активацию и фокус
+    WinActivate
+}
 return
 
 
