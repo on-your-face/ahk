@@ -308,6 +308,20 @@ else
 Run, C:\Windows\system32\cmd.exe
 return
 
+
+; Настройки подключённых устройств (начало)
+<#c:: ; Win + Q
+IfWinExist, ahk_class ApplicationFrameWindow ahk_exe SystemSettings.exe
+{
+    WinActivate
+}
+else
+{
+    Run, "C:\on-your-face\CFW\settings (win 10)\connecteddevices.url"
+}
+return
+; Настройки подключённых устройств (конец)
+
 <#z::
 ; Проверка: актуален ли hwnd (существует ли такое окно)
 if telegram_hwnd && WinExist("ahk_id " . telegram_hwnd)
