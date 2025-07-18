@@ -646,15 +646,21 @@ return
 ; hotkeys-cmd__end
 
 ; mouse-jump__begin
-#1::
-CoordMode, Mouse, Screen
-MouseMove, -992, 431, 0 ; 0 означает мгновенное перемещение
+deviceName := "nexeption-tpls"  ; пример задания переменной, замени на своё получение имени устройства
+
+#if (deviceName = "nexeption-tpls")
+
+>#1::
+    CoordMode, Mouse, Screen
+    MouseMove, -992, 431, 0  ; мгновенное перемещение
 return
 
-#2::
-CoordMode, Mouse, Screen
-MouseMove, 1395, 514, 0 ; то же самое — мгновенно
+>#2::
+    CoordMode, Mouse, Screen
+    MouseMove, 1395, 514, 0  ; мгновенное перемещение
 return
+
+#if  ; отключение условия
 ; mouse-jump__end
 
 
@@ -685,5 +691,29 @@ RotateMouse:
     ; Движение мыши по горизонтали вправо (большое значение — быстрое вращение)
     ; Можно скорректировать значение 3000 в зависимости от чувствительности
     DllCall("mouse_event", "UInt", 0x01, "Int", 3000, "Int", 0, "UInt", 0, "UPtr", 0)
+return
+
+RShift & 1::
+SendInput, {5 down}
+Sleep, 3000
+SendInput, {5 up}
+return
+
+RShift & 2::
+SendInput, {6 down}
+Sleep, 3000
+SendInput, {6 up}
+return
+
+RShift & 3::
+SendInput, {7 down}
+Sleep, 3000
+SendInput, {7 up}
+return
+
+RShift & 4::
+SendInput, {8 down}
+Sleep, 3000
+SendInput, {8 up}
 return
 #If
