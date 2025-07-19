@@ -693,27 +693,39 @@ RotateMouse:
     DllCall("mouse_event", "UInt", 0x01, "Int", 3000, "Int", 0, "UInt", 0, "UPtr", 0)
 return
 
-RShift & 1::
+>^1::
 SendInput, {5 down}
 Sleep, 3000
 SendInput, {5 up}
 return
 
-RShift & 2::
+>^2::
 SendInput, {6 down}
 Sleep, 3000
 SendInput, {6 up}
 return
 
-RShift & 3::
+>^3::
 SendInput, {7 down}
 Sleep, 3000
 SendInput, {7 up}
 return
 
-RShift & 4::
+>^4::
 SendInput, {8 down}
 Sleep, 3000
 SendInput, {8 up}
 return
+
+; >^e::
+; SendInput, e                    ; Нажатие E
+; Sleep, 800                      ; Пауза 0.8 сек
+; Send, {w down}                 
+; Sleep, 1000                     ; Зажатие W на 1 сек
+; Send, {w up}
+; MouseMove, 210, 0, 5, R         ; Поворот вправо немного сильнее
+; SendInput, e                    ; Снова E
+; Sleep, 3500                     ; Пауза
+; MouseMove, -210, 0, 5, R        ; Возврат мыши
+; return
 #If
