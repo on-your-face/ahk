@@ -658,12 +658,22 @@ deviceName := "nexeption-tpls"  ; пример задания переменно
 
 >#1::
     CoordMode, Mouse, Screen
-    MouseMove, -992, 431, 0  ; мгновенное перемещение
+    MouseMove, -1405, 438, 0  ; мгновенное перемещение
 return
 
 >#2::
     CoordMode, Mouse, Screen
-    MouseMove, 1395, 514, 0  ; мгновенное перемещение
+    MouseMove, -494, 427, 0  ; мгновенное перемещение
+return
+
+>#3::
+    CoordMode, Mouse, Screen
+    MouseMove, 752, 511, 0  ; мгновенное перемещение
+return
+
+>#4::
+    CoordMode, Mouse, Screen
+    MouseMove, 2011, 526, 0  ; мгновенное перемещение
 return
 
 #if  ; отключение условия
