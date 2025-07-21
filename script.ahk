@@ -636,6 +636,12 @@ ClipWait
 Send ^v
 Send {Enter}
 return
+>+n::
+clipboard := "cd /d ""c:\git\webTemplate""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
 >+q::
 clipboard := "git add . && git commit -m ok && git push"
 ClipWait
