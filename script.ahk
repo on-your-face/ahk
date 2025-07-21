@@ -5,8 +5,8 @@
 
 SetWorkingDir %A_ScriptDir%
 
-#Include c:\on-your-face\ahk\mods\VD.ahk-class_VD\VD.ahk
-#Include c:\on-your-face\ahk\mods\VD.ahk-class_VD\_VD.ahk
+#Include c:\git\ahk\mods\VD.ahk-class_VD\VD.ahk
+#Include c:\git\ahk\mods\VD.ahk-class_VD\_VD.ahk
 
 if not A_IsAdmin
 {
@@ -96,7 +96,7 @@ PostMessage, 0x50, 0, hKL,, ahk_id %hwnd%
 ; switch-lang__autorun-end
 
 return
-<^<!<+sc1C:: Run, c:\on-your-face\ahk\script.ahk
+<^<!<+sc1C:: Run, c:\git\ahk\script.ahk
 return
 ; soft-cords_run-start
 >#sc39:: 
@@ -580,13 +580,13 @@ return
 return
 <#sc1:: Run, C:\Program Files\CloseAll\CloseAll.exe /NOUI
 return
-<^<#<!Right:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe standby 
+<^<#<!Right:: Run, c:\git\ahk\mods\nircmd-x64\nircmd.exe standby 
 return
-<^<#<!Left:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
+<^<#<!Left:: Run, c:\git\ahk\mods\nircmd-x64\nircmd.exe exitwin logoff
 return
-<^<#<!Up:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin reboot
+<^<#<!Up:: Run, c:\git\ahk\mods\nircmd-x64\nircmd.exe exitwin reboot
 return
-<^<#<!Down:: Run, c:\on-your-face\ahk\mods\nircmd-x64\nircmd.exe exitwin poweroff
+<^<#<!Down:: Run, c:\git\ahk\mods\nircmd-x64\nircmd.exe exitwin poweroff
 return
 ; hotkeys__end
 
@@ -606,26 +606,32 @@ ClipWait
 Send ^v
 Send {Enter}
 return
->+x::
-clipboard := "cd /d ""C:\on-your-face\bookmarks\""" 
+>+z::
+clipboard := "cd /d ""c:\git\ahk\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+z::
-clipboard := "cd /d ""C:\on-your-face\ahk\""" 
+>+x::
+clipboard := "cd /d ""c:\git\bookmarks\bkmrks_a\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
 >+c::
-clipboard := "cd /d ""c:\on-your-face\nexeption (site)""" 
+clipboard := "cd /d ""c:\git\bookmarks\bkmrks_b\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
 >+v::
-clipboard := "cd /d ""c:\on-your-face\backups""" 
+clipboard := "cd /d ""c:\git\nexeption (site)""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+b::
+clipboard := "cd /d ""c:\git\backups""" 
 ClipWait
 Send ^v
 Send {Enter}
