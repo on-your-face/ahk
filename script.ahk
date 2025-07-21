@@ -606,37 +606,43 @@ ClipWait
 Send ^v
 Send {Enter}
 return
->+z::
+>+1::
 clipboard := "cd /d ""c:\git\ahk\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+x::
+>+2::
 clipboard := "cd /d ""c:\git\bookmarks\bkmrks_a\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+c::
+>+3::
 clipboard := "cd /d ""c:\git\bookmarks\bkmrks_b\""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+v::
+>+z::
 clipboard := "cd /d ""c:\git\nexeption (site)""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+b::
+>+x::
+clipboard := "cd /d ""c:\git\happy_holiday""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
+>+4::
 clipboard := "cd /d ""c:\git\backups""" 
 ClipWait
 Send ^v
 Send {Enter}
 return
->+n::
+>+a::
 clipboard := "cd /d ""c:\git\webTemplate""" 
 ClipWait
 Send ^v
