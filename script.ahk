@@ -624,6 +624,12 @@ ClipWait
 Send ^v
 Send {Enter}
 return
+>+4::
+clipboard := "cd /d ""c:\git\bookmarks\software\""" 
+ClipWait
+Send ^v
+Send {Enter}
+return
 >+z::
 clipboard := "cd /d ""c:\git\nexeption (site)""" 
 ClipWait
@@ -636,7 +642,7 @@ ClipWait
 Send ^v
 Send {Enter}
 return
->+4::
+>+5::
 clipboard := "cd /d ""c:\git\backups""" 
 ClipWait
 Send ^v
