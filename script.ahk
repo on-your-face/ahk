@@ -308,7 +308,19 @@ else
 {
     Run, "C:\Program Files\XnViewMP\xnviewmp.exe"
     WinWait, ahk_exe xnviewmp.exe
-    ; Ждём активацию и фокус
+    WinActivate
+}
+return
+
+<#f::
+IfWinExist, ahk_exe notepad++.exe
+{
+    WinActivate
+}
+else
+{
+    Run, "C:\Program Files\Notepad++\notepad++.exe"
+    WinWait, ahk_exe notepad++.exe
     WinActivate
 }
 return
@@ -404,20 +416,20 @@ WinActivate, ahk_exe chrome.exe
 return
 ; location-windows__end
 
-; telegram-nexeption__start
->#q::
-Run, tg://resolve?domain=g_k1d
+#If WinActive("ahk_exe Telegram.exe")
+>+1::
+send, ^0
 return
-; telegram-nexeption__end
-
-; telegram-hashtag-search__start
->#w::
+>+2::
+send, ^9
+return
+>+3::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
 Mouse_Blocked := true
-WinActivate, ahk_exe Telegram.exe
-WinWaitActive, ahk_exe Telegram.exe
-Run, tg://resolve?domain=g_k1d
+; WinActivate, ahk_exe Telegram.exe
+; WinWaitActive, ahk_exe Telegram.exe
+send, ^0
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
 Send, {Lctrl down} {v} {Lctrl up}
@@ -428,6 +440,16 @@ Run, mods\nomousy.exe
 BlockInput, MouseMoveOff
 Mouse_Blocked := false
 return
+#If
+
+; telegram-nexeption__start
+; >#q::
+; Run, tg://resolve?domain=g_k1d
+; return
+; telegram-nexeption__end
+
+; telegram-hashtag-search__start
+
 ; telegram-hashtag-search__end
 
 ; rosmin-base__run-start
