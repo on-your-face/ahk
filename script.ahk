@@ -369,52 +369,10 @@ else
 }
 return
 
-; <#x::
-; if (A_ComputerName = "nexeption-home")
-; {
-; IfWinExist, ahk_exe steamwebhelper.exe
-; WinActivate
-; else
-; Run, "C:\Program Files (x86)\Steam\steam.exe"
-; }
-; return
-
-<^<#q::
-if (A_ComputerName = "nexeption-home")
-{
-if WinExist("ahk_exe cs2.exe")
-{
-WinActivate
-}
-else
-{
-Run, steam://rungameid/730
-}
-}
-return
-
-<^<#w::
-if (A_ComputerName = "nexeption-home")
-{
-if WinExist("ahk_exe dota2.exe")
-{
-WinActivate
-}
-else
-{
-Run, steam://rungameid/570
-}
-}
-return
-
-; rwin-hotkeys__start
-
-; location-windows__start
 >#<+sc39::
 WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
 WinActivate, ahk_exe chrome.exe
 return
-; location-windows__end
 
 #If WinActive("ahk_exe Telegram.exe")
 >+1::
@@ -428,7 +386,6 @@ Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
 Mouse_Blocked := true
 ; WinActivate, ahk_exe Telegram.exe
-; WinWaitActive, ahk_exe Telegram.exe
 send, ^0
 sleep, 300
 Send, {Lctrl down} {f} {Lctrl up}
@@ -442,17 +399,8 @@ Mouse_Blocked := false
 return
 #If
 
-; telegram-nexeption__start
-; >#q::
-; Run, tg://resolve?domain=g_k1d
-; return
-; telegram-nexeption__end
 
-; telegram-hashtag-search__start
-
-; telegram-hashtag-search__end
-
-; rosmin-base__run-start
+#if (A_ComputerName = "nexeption-tpls")
 >#a::
 VD.goToDesktopNum(2)
 Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -479,9 +427,7 @@ Send ^v
 Send, {Enter}
 MouseMove, 2442, 208
 return
-; rosmin-base__end
 
-; rosmin-copypaste__start
 >#s::
 CoordMode, Mouse, Screen
 MouseMove, 1389, 467
@@ -501,9 +447,7 @@ Send, {LControl up}
 Send, {Enter}
 MouseMove, 1732, 641
 return
-; rosmin-copypaste__end
 
-; rosmin-close__start
 >#d::
 CoordMode, Mouse, Screen
 MouseMove, 2539, 22
@@ -512,7 +456,7 @@ MouseMove, 1254, 16
 Click, left
 VD.goToDesktopNum(1)
 return
-; rosmin-close__end
+#if
 
 ; hotkeys-vd__begin
 SC03A & 1::
