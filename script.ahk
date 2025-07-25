@@ -372,41 +372,64 @@ WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
 WinActivate, ahk_exe chrome.exe
 return
 
-#If WinActive("ahk_exe Telegram.exe")
->+1::
-send, ^0
+CheckTelegramActive() {
+    WinGetTitle, winTitle, A
+    return InStr(winTitle, "Telegram")
+}
+
+EnsureTelegramActive() {
+    if !WinActive("ahk_exe Telegram.exe") {
+        WinActivate, ahk_exe Telegram.exe
+        WinWaitActive, ahk_exe Telegram.exe
+        Sleep, 300
+    }
+}
+
+>#z::
+EnsureTelegramActive()
+Send, ^0
 return
->+2::
-send, ^9
+
+>#x::
+EnsureTelegramActive()
+Send, ^9
 return
->+f::
-CoordMode, Mouse, Screen
-MouseMove, -308, 338, 0
-Click
-sleep, 300
+
+>#v::
+if !WinActive("ahk_exe Telegram.exe") {
+    WinActivate, ahk_exe Telegram.exe
+    WinWaitActive, ahk_exe Telegram.exe
+    Sleep, 300
+}
 SendInput, 197346825{!}
 SendInput, {Enter}
 return
->+d::
+return
+
+>#b::
+EnsureTelegramActive()
 Send, ^l
 return
->+3::
+
+>#c::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
 Mouse_Blocked := true
-; WinActivate, ahk_exe Telegram.exe
-send, ^0
-sleep, 300
-Send, {Lctrl down} {f} {Lctrl up}
-Send, {Lctrl down} {v} {Lctrl up}
+
+EnsureTelegramActive()
+Send, ^0
+Sleep, 300
+Send, ^f
+Send, ^v
 Sleep, 1500
-Send, {Down} {Enter}
+Send, {Down}{Enter}
 clipboard := ""
+
 Run, mods\nomousy.exe
 BlockInput, MouseMoveOff
 Mouse_Blocked := false
 return
-#If
+
 
 
 #if (A_ComputerName = "nexeption-tpls")
