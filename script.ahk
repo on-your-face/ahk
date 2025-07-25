@@ -46,7 +46,7 @@ EnvGet, deviceName, COMPUTERNAME
 windows := []
 if (deviceName = "nexeption-tpls") {
 windows.push({exe: "Telegram.exe",   x: -400,  y: -77,	w: 400,	 h: 1080})
-windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+windows.push({exe: "chrome.exe",     x: -1927,	y: -77,	w: 1534, h: 1087})
 windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
 windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
 windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1534,	h: 1087})
@@ -103,7 +103,7 @@ EnvGet, deviceName, COMPUTERNAME
 windows := []
 if (deviceName = "nexeption-tpls") {
     windows.push({exe: "Telegram.exe",   x: -400,  y: -77,	w: 400,	 h: 1080})
-    windows.push({exe: "chrome.exe",     x: -1927, y: -77,  w: 1934, h: 1087})
+    windows.push({exe: "chrome.exe",     x: -1927,	y: -77,	w: 1534, h: 1087})
     windows.push({exe: "Code.exe",       x: 0,     y: 0,    w: 2560, h: 1080})
     windows.push({exe: "Totalcmd64.exe", x: -7,    y: 0,    w: 2574, h: 1087})
     windows.push({exe: "cmd.exe",        x: -1927,	y: -77,	w: 1534,	h: 1087})
@@ -379,6 +379,17 @@ return
 >+2::
 send, ^9
 return
+>+f::
+CoordMode, Mouse, Screen
+MouseMove, -308, 338, 0
+Click
+sleep, 300
+SendInput, 197346825{!}
+SendInput, {Enter}
+return
+>+d::
+Send, ^l
+returnF
 >+3::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
