@@ -389,7 +389,7 @@ SendInput, {Enter}
 return
 >+d::
 Send, ^l
-returnF
+return
 >+3::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
