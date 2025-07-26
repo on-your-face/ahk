@@ -345,28 +345,6 @@ else
 return
 ; Настройки подключённых устройств (конец)
 
-<#z::
-; Проверка: актуален ли hwnd (существует ли такое окно)
-if telegram_hwnd && WinExist("ahk_id " . telegram_hwnd)
-{
-    WinActivate, ahk_id %telegram_hwnd%
-}
-else
-{
-    ; Если Telegram не найден или hwnd устарел
-    if !WinExist("ahk_exe Telegram.exe")
-    {
-        Run, C:\Users\user\AppData\Roaming\Telegram Desktop\Telegram.exe
-        WinWait, ahk_exe Telegram.exe
-    }
-
-    ; Обновляем hwnd и активируем
-    telegram_hwnd := WinExist("ahk_exe Telegram.exe")
-    if telegram_hwnd
-        WinActivate, ahk_id %telegram_hwnd%
-}
-return
-
 >#<+sc39::
 WinMove, ahk_exe chrome.exe, , -7, 0, 2574, 1087
 WinActivate, ahk_exe chrome.exe
@@ -385,17 +363,17 @@ EnsureTelegramActive() {
     }
 }
 
->#z::
+<^<#z::
 EnsureTelegramActive()
 Send, ^0
 return
 
->#x::
+<^<#x::
 EnsureTelegramActive()
 Send, ^9
 return
 
->#v::
+<^<#v::
 if !WinActive("ahk_exe Telegram.exe") {
     WinActivate, ahk_exe Telegram.exe
     WinWaitActive, ahk_exe Telegram.exe
@@ -406,12 +384,12 @@ SendInput, {Enter}
 return
 return
 
->#b::
+<^<#b::
 EnsureTelegramActive()
 Send, ^l
 return
 
->#c::
+<^<#c::
 Run, mods\nomousy.exe /hide
 BlockInput, MouseMove
 Mouse_Blocked := true
@@ -691,7 +669,7 @@ return
 ; mouse-jump__end
 
 
-<#x::
+<#z::
 IfWinExist, ahk_exe KingdomCome.exe
     WinActivate
 else
